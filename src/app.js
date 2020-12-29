@@ -57,72 +57,9 @@ app.get('/registro', async (req, res) => {
   // Si el usuario está conectado entonces renderizamos index.
 });
 
-/*app.get('/post/create', (req, res) => {
-  res.render('post-create', { title: 'Create a new post' });
-});
-
-app.get('/post-edit/:id', async (req, res) => {
-  const _id = req.params.id
-
-  try {
-    const post = await Post.findById(_id)
-
-    if (!post) {
-      return res.status(404).send()
-    }
-
-    res.render('post-edit', { title: 'Edit post', post });
-  } catch (e) {
-    res.status(500).send()
-  }
-});
-
-app.get('/tests', async (req, res) => {
-  try {
-    const tests = await Test.find({})
-    res.render('tests', { title: 'List of tests', tests: tests });
-  } catch (e) {
-    res.render('tests', { title: 'List of tests', tests: [] });
-  }
-});
-
-app.get('/test/create', (req, res) => {
-  res.render('test-create', { title: 'Create a new test'}); // owner: req.user
-});
-
-app.get('/test-edit/:id', async (req, res) => {
-  const _id = req.params.id
-
-  try {
-    const test = await Test.findById(_id)
-
-    if (!test) {
-      return res.status(404).send()
-    }
-
-    res.render('test-edit', { title: 'Edit test', test });
-  } catch (e) {
-    res.status(500).send()
-  }
-});
-
-app.get('/interfaz', (req, res) => {
-  res.render('interfaz', { title: 'Interacción con el servidor' });
-});
-
-app.get('/user-login', (req, res) => {
-  res.render('user-login', {title: 'Login'})
-})
-
-app.get('/user-create', (req, res) => {
-  res.render('user-create', { title: 'Create a new user' });
-});*/
-
 app.use(cors())
 app.use(express.json())
-//app.use('/api', postRouter)
 app.use('/api', userRouter)
-//app.use('/api', testRouter)
 
 // 404 page
 app.use((req, res) => {
