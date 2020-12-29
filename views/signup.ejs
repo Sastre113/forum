@@ -1,0 +1,74 @@
+<%- include("./partials/header.ejs") %>
+
+<div class="container">
+    <form id="user-form-create" action="/api/users" method="POST">
+        <h2>Solicitud de Registro</h2>
+        <p>Rellene todos los campos para completar su registro.</p>
+        <div class="mb-3">
+            <label for="nombre" class="form-label">Nombre</label>
+            <input type="nombre" class="form-control" id="nombre" name="nombre" />
+        </div>
+
+        <div class="mb-3">
+            <label for="apellidos" class="form-label">Apellidos</label>
+            <input type="apellido" class="form-control" id="apellidos" name="apellidos" />
+            
+        </div>
+
+        <div class="mb-3">
+            <label for="exampleInputEmail1" class="form-label">Alias</label>
+            <input type="email" class="form-control" id="exampleInputEmail1" name="alias" />
+        </div>
+
+        <div class="mb-3">
+            <label for="exampleInputEmail1" class="form-label">Correo electrónico</label>
+            <input type="email" class="form-control" id="exampleInputEmail1" name="email" />
+            <div id="emailHelp" class="form-text">Nunca compartiremos tu correo electrónico con nadie más.</div>
+        </div>
+
+        <div class="mb-3">
+            <label for="exampleInputPassword1" class="form-label">Contraseña</label>
+            <input type="password" class="form-control" id="exampleInputPassword1" name="password" />
+        </div>
+
+        <div class="mb-3">
+            <label for="exampleInputEmail1" class="form-label">¿Quien eres?</label><br/>
+            <select class="form-select form-select-sm" name="tipocuenta">
+                <option selected>Selecciona...</option>
+                <option value="familia">Soy un familiar</option>
+                <option value="usuario">Soy un usuario</option>
+            </select>
+        </div>
+
+        <div class="mb-3">
+            <div id="emailHelp" class="form-text">Opciones de privacidad</div>
+            <select class="form-select form-select-sm" name="tipoPrivacidad">
+                <option selected>Selecciona...</option>
+                <option value="soloalias">Mostrar solo mi Alias</option>
+                <option value="solonombre">Mostrar solo mi Nombre</option>
+                <option value="nombrecompleto">Mostrar mi Nombre y Apellidos</option>
+            </select>
+        </div>
+
+        <button class="btn btn-primary">Registrarse</button>
+        </form>
+    </div>
+
+    <script>
+        const createForm = document.querySelector('#user-form-create')
+        createForm.addEventListener('submit', async(e) => {
+            e.preventDefault()
+            try {
+              const resultado = await axios.post('/api/users', { data:
+                {name: e.target.elements.name.value,
+                email: e.target.elements.email.value,
+                password: e.target.elements.password.value,
+                age: e.target.elements.age.value}
+              })
+            } catch (error) {
+              console.log(error)
+            }
+        })
+      </script>
+
+<%- include("./partials/footer.ejs") %>

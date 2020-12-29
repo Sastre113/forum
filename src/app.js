@@ -2,6 +2,8 @@ const express = require('express')
 const morgan = require('morgan')
 const cors = require('cors')
 
+require('dotenv').config()
+
 require('../db/mongoose')
 const postRouter = require('../routers/post')
 const userRouter = require('../routers/user')
@@ -12,7 +14,7 @@ const Post = require('../models/post')
 
 const auth = require('../middleware/auth')
 
-const port = process.env.PORT
+const port = process.env.PORT | 3001
 
 
 // express app
@@ -40,19 +42,22 @@ app.use((req, res, next) => {
 });
 
 app.get('/', async (req, res) => {
-  try {
-    const posts = await Post.find({})
-    res.render('index', { title: 'List of posts', posts: posts });
-  } catch (e) {
-    res.render('index', { title: 'List of posts', posts: [] });
-  }
+  // TODO
+
+  // Si el usuario no esta conectado se renderiza login.
+  res.render('login', { title: 'Login' });
+  // Si el usuario está conectado entonces renderizamos index.
 });
 
-app.get('/about', (req, res) => {
-  res.render('about', { title: 'About' });
+app.get('/registro', async (req, res) => {
+  // TODO
+
+  // Si el usuario no esta conectado se renderiza login.
+  res.render('signup', { title: 'Registro' });
+  // Si el usuario está conectado entonces renderizamos index.
 });
 
-app.get('/post/create', (req, res) => {
+/*app.get('/post/create', (req, res) => {
   res.render('post-create', { title: 'Create a new post' });
 });
 
@@ -111,13 +116,13 @@ app.get('/user-login', (req, res) => {
 
 app.get('/user-create', (req, res) => {
   res.render('user-create', { title: 'Create a new user' });
-});
+});*/
 
 app.use(cors())
 app.use(express.json())
-app.use('/api', postRouter)
+//app.use('/api', postRouter)
 app.use('/api', userRouter)
-app.use('/api', testRouter)
+//app.use('/api', testRouter)
 
 // 404 page
 app.use((req, res) => {

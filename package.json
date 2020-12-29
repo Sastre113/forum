@@ -1,7 +1,7 @@
 {
-    "name": "express-web",
+    "name": "reussaludmental",
     "version": "1.0.0",
-    "description": "web con express",
+    "description": "web de reussaludmental",
     "main": "src/app.js",
     "scripts": {
       "start": "node src/app.js",
@@ -9,7 +9,7 @@
       "sass": "sass --watch src/sass/:public/css/",
       "dev": "npm run nodemon & npm run sass"
     },
-    "author": "X",
+    "author": "RSM",
     "license": "ISC",
     "dependencies": {
       "bcryptjs": "^2.4.3",
