@@ -42,7 +42,7 @@ app.use((req, res, next) => {
 });
 
 app.get('/', async (req, res) => {
-  // TODO
+  // TODO !
 
   // Si el usuario no esta conectado se renderiza login.
   res.render('login', { title: 'Login' });
