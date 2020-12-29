@@ -2,7 +2,7 @@ const mongoose = require('mongoose')
 const validator = require('validator')
 const bcrypt = require('bcryptjs')
 const jsonwebtoken = require('jsonwebtoken')
-const Test = require('./test')
+//const Test = require('./test')
 
 const userSchema = new mongoose.Schema({
     name: {
@@ -99,11 +99,11 @@ userSchema.pre('save', async function (next) {
 })
 
 // Delete user tests when user is removed
-userSchema.pre('remove', async function (next) {
+/*userSchema.pre('remove', async function (next) {
     const user = this
     await Test.deleteMany({ owner: user._id })
     next()
-})
+})*/
 
 const User = mongoose.model('User', userSchema)
 

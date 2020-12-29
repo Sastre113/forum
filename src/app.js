@@ -5,12 +5,8 @@ const cors = require('cors')
 require('dotenv').config()
 
 require('../db/mongoose')
-const postRouter = require('../routers/post')
-const userRouter = require('../routers/user')
-const testRouter = require('../routers/test')
 
-const Test = require('../models/test')
-const Post = require('../models/post')
+const userRouter = require('../routers/user')
 
 const auth = require('../middleware/auth')
 
