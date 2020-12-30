@@ -1,35 +1,100 @@
 const mongoose = require('mongoose');
+const jsonwebtoken = require('jsonwebtoken')
+const bcrypt = require('bcryptjs');
+const validator= require('validator');
 
-const Usuario = mongoose.model('Usuario', {
-    _id:{
-        type: Number,
-        required: true
-    },
-    paciente:{
+const usuarioSchema = new mongoose.Schema({
+    paciente: {
         type: Boolean,
         default: true,
         required: true
     },
-    nombre:{
+    nombre: {
         type: String,
         required: true
     },
-    apellido:{
+    apellido: {
         type: String,
         required: true
     },
-    fechaNacimiento:{
+    fechaNacimiento: {
         type: String,
         required: true
     },
-    enfermedad:{
+    enfermedad: {
         type: String,
         required: true
     },
-    anonimo:{
+    email: {
+        type: String,
+        required: true,
+        unique:true,
+        trim: true,
+        lowercase:true,
+        validate(value){
+            if(!validator.isEmail(value)){
+                throw new Error('Email no válido')
+            }
+        }
+    },
+    password: {
+        type: String,
+        required: true
+    },
+    anonimo: {
         type: Boolean,
         default: false,
+    },
+    tokens: [{
+        token: {
+            type: String,
+            require: true
+        }
+    }]
+}, {timestamps: true}) 
+
+usuarioSchema.methods.toJSON = function () {
+    const usuario = this
+    const usuarioObject = usuario.toObject()
+ 
+    delete usuarioObject.password
+    delete usuarioObject.tokens
+
+    return usuarioObject
+}
+
+usuarioSchema.methods.generateAuthToken = async function () {
+    const usuario = this
+    const token = await jsonwebtoken.sign({ _id: usuario._id.toString() }, process.env.JWT_KEY, { expiresIn: '7 days' })
+
+    usuario.tokens = usuario.tokens.concat({ token })
+    await usuario.save()
+
+    return token
+}
+
+usuarioSchema.statics.findUsuarioByCredentials = async (email, password) => {
+    const usuario = await Usuario.findOne({ email: email })
+    if (!usuario) {
+        throw new Error('Email o password no válidos')
     }
+
+    const isOk = await bcrypt.compare(password, usuario.password)
+
+    if (!isOk) {
+        throw new Error('Email o password no válidos')
+    }
+    return usuario
+}
+
+usuarioSchema.pre('save', async function (next) {
+    const usuario = this
+    if (usuario.isModified('password')) {
+        usuario.password = await bcrypt.hash(usuario.password, 8)
+    }
+    next()
 })
+
+const Usuario = mongoose.model('Usuario', usuarioSchema)
 
 module.exports = Usuario;

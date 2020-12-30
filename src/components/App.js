@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import Foro from './components/Foro'
+import Foro from './Foro'
 import './style/style.css';
 
 

@@ -1,7 +1,7 @@
 <%- include("./partials/header.ejs") %>
 
 <div class="container">
-    <form id="user-form-create" action="/api/users" method="POST">
+    <form id="usuario-form-create" action="/api/usuarios" method="POST">
         <h2>Solicitud de Registro</h2>
         <p>Rellene todos los campos para completar su registro.</p>
         <div class="mb-3">
@@ -55,11 +55,11 @@
     </div>
 
     <script>
-        const createForm = document.querySelector('#user-form-create')
+        const createForm = document.querySelector('#usuario-form-create')
         createForm.addEventListener('submit', async(e) => {
             e.preventDefault()
             try {
-              const resultado = await axios.post('/api/users', { data:
+              const resultado = await axios.post('/api/usuarios', { data:
                 {name: e.target.elements.name.value,
                 email: e.target.elements.email.value,
                 password: e.target.elements.password.value,

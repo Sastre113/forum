@@ -3,7 +3,7 @@
 <main>
   <section>
     <div class="container">
-      <form id="user-form-login">
+      <form id="usuario-form-login">
           <h2>Conexión</h2>
           <p>Debe realizar previamente una solicitud de registro, puede solicitar una invitación en uno de los siguientes <NavLink to='/centros-miembros'>centros de salud mental</NavLink>.</p>
           <div class="mb-3">
@@ -28,12 +28,12 @@
 
 <script src="https://unpkg.com/axios/dist/axios.min.js"></script>
 <script>
-  const loginForm = document.querySelector('#user-form-login')
+  const loginForm = document.querySelector('#usuario-form-login')
 
   loginForm.addEventListener('submit', async (e) => {
     e.preventDefault()
     try {
-      const response = await axios.post('/api/users/login', {
+      const response = await axios.post('/api/usuarios/login', {
         email: e.target.elements.email.value,
         password: e.target.elements.password.value
       })
@@ -48,7 +48,7 @@
 
   const getAuthToken = () => {
     const AUTH_TOKEN = localStorage.getItem('auth-token')
-    console.log('auth token from user-login.ejs', AUTH_TOKEN)
+    console.log('auth token from usuario-login.ejs', AUTH_TOKEN)
     axios.defaults.headers.common['Authorization'] = AUTH_TOKEN
   }
 

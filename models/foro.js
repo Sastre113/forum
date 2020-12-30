@@ -1,10 +1,6 @@
 const mongoose = require('mongoose');
 
-const Foro = mongoose.model('Foro', {
-    _id:{
-        type: Number,
-        required: true
-    },
+const foroSchema = new mongoose.Schema({
     idAutor:{
         type: Number,
         required: true
@@ -22,6 +18,8 @@ const Foro = mongoose.model('Foro', {
         required: true
     }
 
-})
+}, {timestamps:true})
+
+const Foro = mongoose.model('Foro', foroSchema)
 
 module.exports = Foro;

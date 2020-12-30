@@ -1,12 +1,10 @@
 const express = require('express')
-const morgan = require('morgan')
-const cors = require('cors')
 
 require('dotenv').config()
 
 require('../db/mongoose')
 
-const userRouter = require('../routers/user')
+const usuarioRouter = require('../routers/usuario')
 
 const auth = require('../middleware/auth')
 
@@ -27,7 +25,6 @@ app.set('view engine', 'ejs');
 // middleware & static files
 app.use(express.static('public'));
 app.use(express.urlencoded({ extended: true }))
-app.use(morgan('dev'))
 
 app.use((req, res, next) => {
   console.log('new request made:');
@@ -41,7 +38,7 @@ app.get('/', async (req, res) => {
   // TODO !
 
   // Si el usuario no esta conectado se renderiza login.
-  res.render('login', { title: 'Login' });
+  res.render('index', { title: 'Login' });
   // Si el usuario está conectado entonces renderizamos index.
 });
 
@@ -53,9 +50,8 @@ app.get('/registro', async (req, res) => {
   // Si el usuario está conectado entonces renderizamos index.
 });
 
-app.use(cors())
 app.use(express.json())
-app.use('/api', userRouter)
+app.use('/api', usuarioRouter)
 
 // 404 page
 app.use((req, res) => {
