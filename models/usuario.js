@@ -16,12 +16,12 @@ const usuarioSchema = new mongoose.Schema({
     apellido: {
         type: String,
         required: true
-    },
+    }/*,
     fechaNacimiento: {
         // ? o String
         type: Date, 
         required: true
-    },
+    }*/,
     email: {
         type: String,
         required: true,
