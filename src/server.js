@@ -6,6 +6,9 @@ require('../db/mongoose')
 
 const usuarioRouter = require('../routers/usuario')
 
+const FrasesDB = require('../models/frasesDB')
+const frasesRouter = require('../routers/frasesDB')
+
 const auth = require('../middleware/auth')
 
 const port = process.env.PORT | 3001
@@ -34,7 +37,9 @@ app.use((req, res, next) => {
 });
 
 app.get('/', async (req, res) => {
-  res.render('login', { title: 'Login' });
+  await FrasesDB.find({}).then((data) => {
+      res.render('login', { title: 'Login', frases: data });
+  });
 });
 
 app.get('/registro', async (req, res) => {
@@ -43,6 +48,7 @@ app.get('/registro', async (req, res) => {
 
 app.use(express.json())
 app.use('/api', usuarioRouter)
+app.use('/api', frasesRouter)
 
 // 404 page
 app.use((req, res) => {
