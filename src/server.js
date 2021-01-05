@@ -10,7 +10,6 @@ const auth = require('../middleware/auth')
 
 const port = process.env.PORT | 3001
 
-
 // express app
 const app = express();
 
@@ -35,19 +34,11 @@ app.use((req, res, next) => {
 });
 
 app.get('/', async (req, res) => {
-  // TODO !
-
-  // Si el usuario no esta conectado se renderiza login.
-  res.render('index', { title: 'Login' });
-  // Si el usuario está conectado entonces renderizamos index.
+  res.render('login', { title: 'Login' });
 });
 
 app.get('/registro', async (req, res) => {
-  // TODO
-
-  // Si el usuario no esta conectado se renderiza login.
   res.render('signup', { title: 'Registro' });
-  // Si el usuario está conectado entonces renderizamos index.
 });
 
 app.use(express.json())

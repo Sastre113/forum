@@ -1,7 +1,7 @@
 <%- include("./partials/header.ejs") %>
 
 <div class="container">
-    <form id="usuario-form-create" action="/api/usuarios" method="POST">
+    <form id="user-form-create">
         <h2>Solicitud de Registro</h2>
         <p>Rellene todos los campos para completar su registro.</p>
         <div class="mb-3">
@@ -52,18 +52,26 @@
 
         <button class="btn btn-primary">Registrarse</button>
         </form>
+
     </div>
 
     <script>
-        const createForm = document.querySelector('#usuario-form-create')
+        const createForm = document.querySelector('#user-form-create')
         createForm.addEventListener('submit', async(e) => {
             e.preventDefault()
             try {
-              const resultado = await axios.post('/api/usuarios', { data:
-                {name: e.target.elements.name.value,
-                email: e.target.elements.email.value,
-                password: e.target.elements.password.value,
-                age: e.target.elements.age.value}
+              const resultado = await axios.post('/api/users', { data:
+                {
+                    tipo: e.target.elements.tipocuenta.value,
+                    nombre: e.target.elements.nombre.value,
+                    apellido: e.target.elements.apellidos.value,
+                    fechaNacimiento: e.target.elements.password.value, //todo
+                    email: e.target.elements.email.value,
+                    password: e.target.elements.password.value,
+                    tipoPrivacidad: e.target.elements.tipoPrivacidad.value,
+                    
+
+                }
               })
             } catch (error) {
               console.log(error)

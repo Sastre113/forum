@@ -4,8 +4,8 @@ const bcrypt = require('bcryptjs');
 const validator= require('validator');
 
 const usuarioSchema = new mongoose.Schema({
-    paciente: {
-        type: Boolean,
+    tipo: {
+        type: String,
         default: true,
         required: true
     },
@@ -18,11 +18,8 @@ const usuarioSchema = new mongoose.Schema({
         required: true
     },
     fechaNacimiento: {
-        type: String,
-        required: true
-    },
-    enfermedad: {
-        type: String,
+        // ? o String
+        type: Date, 
         required: true
     },
     email: {
@@ -41,8 +38,8 @@ const usuarioSchema = new mongoose.Schema({
         type: String,
         required: true
     },
-    anonimo: {
-        type: Boolean,
+    tipoPrivacidad: {
+        type: String,
         default: false,
     },
     tokens: [{
