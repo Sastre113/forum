@@ -22,6 +22,7 @@ app.listen(port, () => {
 // register view engine
 app.set('view engine', 'ejs');
 
+
 // middleware & static files
 app.use(express.static('public'));
 app.use(express.urlencoded({ extended: true }))
@@ -47,6 +48,15 @@ app.get('/registro', async (req, res) => {
 
   // Si el usuario no esta conectado se renderiza login.
   res.render('signup', { title: 'Registro' });
+  // Si el usuario está conectado entonces renderizamos index.
+});
+
+
+app.get('/hola', async (req, res) => {
+  // TODO !
+
+  // Si el usuario no esta conectado se renderiza login.
+  res.render(path.join(__dirname+'./src/index.js'));
   // Si el usuario está conectado entonces renderizamos index.
 });
 

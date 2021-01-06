@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import Foro from './Foro'
-import './style/style.css';
+import '../../public/css/style.css';
 
 
 export default class App extends Component {

@@ -1,10 +1,6 @@
 const mongoose = require('mongoose');
 
 const foroSchema = new mongoose.Schema({
-    idAutor:{
-        type: Number,
-        required: true
-    },
     tema:{
         type: String,
         required: false
@@ -15,7 +11,12 @@ const foroSchema = new mongoose.Schema({
     },
     post:{
         type: String,
-        required: true
+        required: true,
+    },
+    autor: {
+        type: mongoose.Schema.Types.ObjectId,
+        required: true,
+        ref: 'usuario'
     }
 
 }, {timestamps:true})
