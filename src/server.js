@@ -6,8 +6,8 @@ require('../db/mongoose')
 
 const usuarioRouter = require('../routers/usuario')
 
-const FrasesDB = require('../models/frasesDB')
-const frasesRouter = require('../routers/frasesDB')
+const frasesSalut = require('../models/frasesSalut')
+const frasesRouter = require('../routers/frasesSalut')
 
 const auth = require('../middleware/auth')
 
@@ -36,10 +36,14 @@ app.use((req, res, next) => {
   next();
 });
 
+
+
 app.get('/', async (req, res) => {
-  await FrasesDB.find({}).then((data) => {
-      res.render('login', { title: 'Login', frases: data });
-  });
+ 
+  let lasFrases =  await frasesSalut.find({});
+  let random = Math.floor(Math.random() * lasFrases.length);
+  
+  res.render('login', { title: 'Login', fraseSalut: lasFrases[random] });
 });
 
 app.get('/registro', async (req, res) => {

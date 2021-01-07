@@ -1,6 +1,6 @@
 const mongoose = require('mongoose')
 
-const frasesDB = mongoose.model('frasesdbs', {
+const frasesDB = mongoose.model('frasesSalut', {
     frase:{
         type: String,
         required: true

@@ -1,9 +1,9 @@
 const express = require('express')
-const frasesDB = require('../models/frasesDB')
+const frasesSalut = require('../models/frasesSalut')
 const router = new express.Router()
 
 router.post('/frases', async (req, res) => {
-    const frase = new frasesDB(req.body)
+    const frase = new frasesSalut(req.body)
 
     try {
         await frase.save()
@@ -15,7 +15,7 @@ router.post('/frases', async (req, res) => {
 
 router.get('/frases', async (req, res) => {
     try {
-        const frases = await frasesDB.find({})
+        const frases = await frasesSalut.find({})
         res.send(frases)
     } catch (e) {
         res.status(500).send()
@@ -24,9 +24,8 @@ router.get('/frases', async (req, res) => {
 
 router.get('/frases/:id', async (req, res) => {
     const _id = req.params.id
-
     try {
-        const frase = await frasesDB.findById(_id)
+        const frase = await frasesSalut.findById(_id)
 
         if (!frase) {
             return res.status(404).send()
@@ -48,7 +47,7 @@ router.patch('/frases/:id', async (req, res) => {
     }
 
     try {
-        const frase = await frasesDB.findByIdAndUpdate(req.params.id, req.body, { new: true, runValidators: true })
+        const frase = await frasesSalut.findByIdAndUpdate(req.params.id, req.body, { new: true, runValidators: true })
 
         if (!frase) {
             return res.status(404).send()
@@ -62,7 +61,7 @@ router.patch('/frases/:id', async (req, res) => {
 
 router.delete('/frases/:id', async (req, res) => {
     try {
-        const frase = await frasesDB.findByIdAndDelete(req.params.id)
+        const frase = await frasesSalut.findByIdAndDelete(req.params.id)
 
         if (!frase) {
             res.status(404).send()
