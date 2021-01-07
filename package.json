@@ -15,6 +15,7 @@
         "dev:front": "concurrently \"npm run build:front\" \"npm run dev:webpack\""
     },
     "dependencies": {
+        "axios": "^0.21.1",
         "bcryptjs": "^2.4.3",
         "ejs": "^3.1.5",
         "express": "^4.17.1",

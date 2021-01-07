@@ -1,23 +1,23 @@
 <%- include("./partials/header.ejs") %>
 
 <div class="container">
-    <form id="usuario-form-create" action="/api/usuarios" method="POST">
+    <form id="user-form-create" name="usuarios">
         <h2>Solicitud de Registro</h2>
         <p>Rellene todos los campos para completar su registro.</p>
         <div class="mb-3">
             <label for="nombre" class="form-label">Nombre</label>
-            <input type="nombre" class="form-control" id="nombre" name="nombre" />
+            <input type="text" class="form-control" id="nombre" name="nombre" />
         </div>
 
         <div class="mb-3">
             <label for="apellidos" class="form-label">Apellidos</label>
-            <input type="apellido" class="form-control" id="apellidos" name="apellidos" />
+            <input type="text" class="form-control" id="apellidos" name="apellidos" />
             
         </div>
 
         <div class="mb-3">
             <label for="exampleInputEmail1" class="form-label">Alias</label>
-            <input type="email" class="form-control" id="exampleInputEmail1" name="alias" />
+            <input type="text" class="form-control" id="exampleInputEmail1" name="alias" />
         </div>
 
         <div class="mb-3">
@@ -52,22 +52,38 @@
 
         <button class="btn btn-primary">Registrarse</button>
         </form>
+
     </div>
 
+    <script src="https://unpkg.com/axios/dist/axios.min.js"></script>
     <script>
-        const createForm = document.querySelector('#usuario-form-create')
+        const createForm = document.querySelector('#user-form-create')
         createForm.addEventListener('submit', async(e) => {
             e.preventDefault()
+
+            const usuario = 
+                    {
+                        "tipo": e.target.elements.tipocuenta.value,
+                        "nombre": e.target.elements.nombre.value,
+                        "apellido": e.target.elements.apellidos.value,
+                        //"fechaNacimiento": e.target.elements.password.value,
+                        "email": e.target.elements.email.value,
+                        "password": e.target.elements.password.value,
+                        "tipoPrivacidad": e.target.elements.tipoPrivacidad.value
+                        // ? token
+                    }
+
             try {
-              const resultado = await axios.post('/api/usuarios', { data:
-                {name: e.target.elements.name.value,
-                email: e.target.elements.email.value,
-                password: e.target.elements.password.value,
-                age: e.target.elements.age.value}
-              })
+
+              const resultado = await axios.post('/api/usuarios', usuario)
+
+              console.log(resultado)
+
             } catch (error) {
               console.log(error)
             }
+
+            
         })
       </script>
 

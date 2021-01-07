@@ -104,6 +104,6 @@ dist
 # TernJS port file
 .tern-port
 
-# Que no se suban
+
+# Ignorar Archivos
 frasesCelebres.json
-frasesCelebres.txt

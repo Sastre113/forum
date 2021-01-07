@@ -4,8 +4,12 @@
   <section>
     <div class="container">
       <form id="usuario-form-login">
+          
+          <p><quote>"<b><%= fraseSalut.frase %></b>"<br> ~ <u><%= fraseSalut.autor %></u></quote></p>
+
           <h2>Conexión</h2>
           <p>Debe realizar previamente una solicitud de registro, puede solicitar una invitación en uno de los siguientes <NavLink to='/centros-miembros'>centros de salud mental</NavLink>.</p>
+          
           <div class="mb-3">
               <label for="email" class="form-label">Correo electrónico</label>
               <input name="email" type="email" class="form-control" id="email" />

@@ -6,10 +6,12 @@ require('../db/mongoose')
 
 const usuarioRouter = require('../routers/usuario')
 
+const frasesSalut = require('../models/frasesSalut')
+const frasesRouter = require('../routers/frasesSalut')
+
 const auth = require('../middleware/auth')
 
 const port = process.env.PORT | 3001
-
 
 // express app
 const app = express();
@@ -35,20 +37,18 @@ app.use((req, res, next) => {
   next();
 });
 
-app.get('/', async (req, res) => {
-  // TODO !
 
-  // Si el usuario no esta conectado se renderiza login.
-  res.render('index', { title: 'Login' });
-  // Si el usuario está conectado entonces renderizamos index.
+
+app.get('/', async (req, res) => {
+ 
+  let lasFrases =  await frasesSalut.find({});
+  let random = Math.floor(Math.random() * lasFrases.length);
+  
+  res.render('login', { title: 'Login', fraseSalut: lasFrases[random] });
 });
 
 app.get('/registro', async (req, res) => {
-  // TODO
-
-  // Si el usuario no esta conectado se renderiza login.
   res.render('signup', { title: 'Registro' });
-  // Si el usuario está conectado entonces renderizamos index.
 });
 
 
@@ -62,6 +62,7 @@ app.get('/hola', async (req, res) => {
 
 app.use(express.json())
 app.use('/api', usuarioRouter)
+app.use('/api', frasesRouter)
 
 // 404 page
 app.use((req, res) => {
