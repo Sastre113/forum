@@ -8,7 +8,8 @@ module.exports = {
         poll: 3000
     },
     entry: {
-        index: './src/index.js'
+        login: './src/login.js',
+        forum: './src/forum.js'
     },
     output: {
         path: path.join(__dirname, 'public/js'),
@@ -21,7 +22,10 @@ module.exports = {
             use: {
                 loader: 'babel-loader',
                 options: {
-                    presets: ['@babel/preset-env', '@babel/preset-react']
+                    presets: ['@babel/preset-env', '@babel/preset-react'],
+                    plugins: [
+                        '@babel/plugin-proposal-class-properties' // individual plugin without options
+                    ]
                 }
             }
         },

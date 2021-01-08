@@ -1,13 +1,21 @@
 import React, { Component } from 'react';
-import Foro from './Foro'
-import '../../public/css/style.css';
+
+// Components
+import Menu from './Menu';
+import Foro from './Formulario';
+import Inicio from './Inicio'
+import Post from './Post';
+
+
 
 
 export default class App extends Component {
   render() {
     return (
-      <div>
-        <Foro />
+      <div className='mainClass'>
+        <Menu />
+        <Inicio />
+        
       </div>
     )
   }

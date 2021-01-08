@@ -9,6 +9,10 @@ const usuarioSchema = new mongoose.Schema({
         default: true,
         required: true
     },
+    nickname: {
+        type: String,
+        required: true
+    },
     nombre: {
         type: String,
         required: true
@@ -16,12 +20,11 @@ const usuarioSchema = new mongoose.Schema({
     apellido: {
         type: String,
         required: true
-    }/*,
+    },
     fechaNacimiento: {
-        // ? o String
-        type: Date, 
+        type: String, 
         required: true
-    }*/,
+    },
     email: {
         type: String,
         required: true,
@@ -37,9 +40,10 @@ const usuarioSchema = new mongoose.Schema({
     password: {
         type: String,
         required: true
-    },
-    tipoPrivacidad: {
-        type: String,
+    }, // Con esto controlamos si el usuario usará el nombre real
+        // o el nickname
+    anonimo: {
+        type: Boolean,
         default: false,
     },
     tokens: [{
@@ -50,6 +54,8 @@ const usuarioSchema = new mongoose.Schema({
     }]
 }, {timestamps: true}) 
 
+
+// Este metodo no enseña la contraseña y el tokens al los usuarios.
 usuarioSchema.methods.toJSON = function () {
     const usuario = this
     const usuarioObject = usuario.toObject()

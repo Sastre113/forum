@@ -52,13 +52,9 @@ app.get('/registro', async (req, res) => {
 });
 
 
-app.get('/hola', async (req, res) => {
-  // TODO !
-
-  // Si el usuario no esta conectado se renderiza login.
-  res.render(path.join(__dirname+'./src/index.js'));
-  // Si el usuario está conectado entonces renderizamos index.
-});
+app.get('/forum', (req ,res) => {
+    res.render('forum', {title: 'Forum'})
+})
 
 app.use(express.json())
 app.use('/api', usuarioRouter)

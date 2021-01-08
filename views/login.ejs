@@ -1,10 +1,16 @@
 <%- include("./partials/header.ejs") %>
 
+<header>
+  <div class="container">
+    <h1>Reus Salud Mental</h1>
+  </div>
+</header>
+
 <main>
   <section>
     <div class="container">
-      <form id="usuario-form-login">
-          
+      <form id="usuario-form-login" action="/forum" type="txt/html">
+        
           <p><quote>"<b><%= fraseSalut.frase %></b>"<br> ~ <u><%= fraseSalut.autor %></u></quote></p>
 
           <h2>Conexión</h2>
@@ -35,7 +41,7 @@
   const loginForm = document.querySelector('#usuario-form-login')
 
   loginForm.addEventListener('submit', async (e) => {
-    e.preventDefault()
+    // e.preventDefault()
     try {
       const response = await axios.post('/api/usuarios/login', {
         email: e.target.elements.email.value,
@@ -59,4 +65,4 @@
   getAuthToken()
 </script>
 
-<%- include("./partials/footer.ejs") %>
+<%- include("./partials/footer-login.ejs") %>
