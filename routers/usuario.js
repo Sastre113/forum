@@ -34,6 +34,7 @@ router.post('/usuarios/logout', auth, async (req, res) => {
 
         res.send()
     } catch (e) {
+        
         res.status(500).send()
     }
 })
@@ -54,7 +55,7 @@ router.get('/usuarios/me', auth, async (req, res) => {
 
 router.patch('/usuarios/me', auth, async (req, res) => {
     const updates = Object.keys(req.body)
-    const allowedUpdates = ['tipo','nombre','apellido'/*,'fechaNacimiento'*/, 'email','tipoPrivacidad','password']
+    const allowedUpdates = ['tipo','nombre','apellido','fechaNacimiento', 'email','tipoPrivacidad','password']
     const isValidOperation = updates.every((update) => allowedUpdates.includes(update))
 
     if (!isValidOperation) {

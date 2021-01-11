@@ -1,13 +1,12 @@
 const express = require('express')
 
 require('dotenv').config()
-
 require('../db/mongoose')
 
 const usuarioRouter = require('../routers/usuario')
-
 const frasesSalut = require('../models/frasesSalut')
 const frasesRouter = require('../routers/frasesSalut')
+const hiloRouter = require('../routers/hilo');
 
 const auth = require('../middleware/auth')
 
@@ -27,6 +26,7 @@ app.set('view engine', 'ejs');
 
 // middleware & static files
 app.use(express.static('public'));
+app.use('/static', express.static(__dirname + '/src'));
 app.use(express.urlencoded({ extended: true }))
 
 app.use((req, res, next) => {
@@ -56,9 +56,10 @@ app.get('/forum', (req ,res) => {
     res.render('forum', {title: 'Forum'})
 })
 
-app.use(express.json())
-app.use('/api', usuarioRouter)
-app.use('/api', frasesRouter)
+app.use(express.json());
+app.use('/api', usuarioRouter);
+app.use('/api', frasesRouter);
+app.use('/api', hiloRouter);
 
 // 404 page
 app.use((req, res) => {

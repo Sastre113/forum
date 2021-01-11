@@ -9,7 +9,8 @@ module.exports = {
     },
     entry: {
         login: './src/login.js',
-        forum: './src/forum.js'
+        forum: './src/forum.js',
+        
     },
     output: {
         path: path.join(__dirname, 'public/js'),

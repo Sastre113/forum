@@ -1,26 +1,30 @@
-import React, { Component , useState } from 'react';
+import React, { Component, useState } from 'react';
 import { BrowserRouter as Router, Route, Link } from 'react-router-dom';
-
+import axios from '../axiosConfig';
 
 
 // Components
-import Formulario from './Formulario';
+import Formulario from './Modal/Formulario';
 
 
 export default class Menu extends Component {
-
+    logout() {
+        axios.post('usuarios/logout').then(() =>{
+            localStorage.removeItem('auth-token');
+            window.location.href = '/';
+        }).catch((e)=>{
+            console.log(e);
+        });
+    }
 
     render() {
         return (
             <div>
-                <Router>
-                    <div className='navForo'>
-                        <li> <Link to='/home' > Home </Link> </li>
-                        <li> <Link to='/newThread'> Nuevo Tema </Link> </li>  
-                        <li> <Link to='/logout'> Cerrar Sesión </Link></li>
-                    </div>
-                    {/* <Route path='/newThread' component={miModal}></Route> */}
-                </Router>
+                <div className='navForo'>
+                    <li> <a>Home</a>  </li>
+                    <li> <a>Nuevo Tema </a>  </li>
+                    <li onClick={this.logout}><a>Cerrar Sesión</a>  </li>
+                </div>
             </div>
         )
     }

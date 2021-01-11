@@ -14,12 +14,13 @@
   top: 0;
 }
 
-.navForo > li {
+.navForo li {
   float: left;
   font-size: 20px;
 }
 
-.navForo > li a {
+.navForo li a {
+  cursor: pointer;
   background-color: grey;
   display: block;
   color: black;
@@ -28,7 +29,7 @@
   padding: 14px 16px;
 }
 
-.navForo > li a:hover {
+.navForo li a:hover {
   background-color: green;
 }
 
@@ -63,5 +64,10 @@
 }
 
 .bodyThread {
-  margin-left: 5px;
+  padding-left: 5px;
+}
+
+/*  Footer ejs */
+.container.footer {
+  background-color: black;
 }

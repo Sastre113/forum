@@ -4,13 +4,9 @@ const bcrypt = require('bcryptjs');
 const validator= require('validator');
 
 const usuarioSchema = new mongoose.Schema({
-    tipo: {
-        type: String,
-        default: true,
-        required: true
-    },
     nickname: {
         type: String,
+        unique: true,
         required: true
     },
     nombre: {
@@ -39,12 +35,18 @@ const usuarioSchema = new mongoose.Schema({
     },
     password: {
         type: String,
+        minLength: 6,
         required: true
-    }, // Con esto controlamos si el usuario usará el nombre real
-        // o el nickname
+    }, 
+    // Con esto controlamos si el usuario usará el nombre real
+    //  o el nickname
     anonimo: {
         type: Boolean,
-        default: false,
+        default: true,
+    },
+    tipo: {
+        type: String, 
+        required: true
     },
     tokens: [{
         token: {
@@ -52,7 +54,7 @@ const usuarioSchema = new mongoose.Schema({
             require: true
         }
     }]
-}, {timestamps: true}) 
+},{timestamps: true}) 
 
 
 // Este metodo no enseña la contraseña y el tokens al los usuarios.

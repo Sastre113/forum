@@ -1,0 +1,38 @@
+[
+	{
+		"idThread": "123fas",
+		"idAuthor": "100",
+		"disease": "Ezquizofrenía",
+		"titleThread": "Todo el mundo me mira",
+		"bodyThread": "Ultimamente me he dado cuenta de que la mayoría de las personas que me rondean no dejan de mirarme. Como si tuviera algo en la cara. Es extraño, porque me lavo todos los dias la cara."  
+	},
+	{
+		"idThread": "213fa",
+		"idAuthor": "132",
+		"disease": "Paranoia",
+		"titleThread": "El wifi nos mata",
+		"bodyThread": "Creo que mi compañia de telefonía esta atacando mi salud con el router. Desde que me subieron los \"megas\" me encuentro peor, y no se que hacer"  
+	},
+	{
+		"idThread": "1fh31",
+		"idAuthor": "200",
+		"disease": "Ansiedad",
+		"titleThread": "Me ahogo constantemente",
+		"bodyThread": "Alla donde voy me ahogo. Da igual lo que hago, no se si es sobrepeso o retraso mental"
+	},
+	{
+		"idThread": "123fas2",
+		"idAuthor": "100",
+		"disease": "Ezquizofrenía",
+		"titleThread": "Hoy nadie me mira",
+		"bodyThread": "Hoy por fin nadie me ha mirado, aunque ahora lo echo de menos. ¿Algun consejo?"
+	},
+	{
+		"idThread": "2235",
+		"idAuthor": "231",
+		"disease": "Depresión",
+		"titleThread": "No me apetece nada",
+		"bodyThread": "LOREN SUM OS CULUN EL ANOL"
+	},
+	
+]
