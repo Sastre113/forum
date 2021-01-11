@@ -7,12 +7,6 @@ export default class Post extends Component {
         posts: []
     }
 
-    // async componentDidMount(){
-    //     // const res = await fetch('https://jsonplaceholder.typicode.com/posts');
-    //     // const data = await res.json();
-    //     // this.setState({posts: data})
-    // }
-
     render() {
         return (
             <div>          

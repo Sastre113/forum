@@ -10,6 +10,7 @@ module.exports = {
     entry: {
         login: './src/login.js',
         forum: './src/forum.js',
+        signup: './src/signup.js'
         
     },
     output: {

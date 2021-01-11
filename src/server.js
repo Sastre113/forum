@@ -44,7 +44,7 @@ app.get('/', async (req, res) => {
   let lasFrases =  await frasesSalut.find({});
   let random = Math.floor(Math.random() * lasFrases.length);
   
-  res.render('login', { title: 'Login', fraseSalut: lasFrases[random] });
+  res.render('login', { title: 'Login', fraseSalut: lasFrases[random]});
 });
 
 app.get('/registro', async (req, res) => {

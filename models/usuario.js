@@ -18,7 +18,7 @@ const usuarioSchema = new mongoose.Schema({
         required: true
     },
     fechaNacimiento: {
-        type: String, 
+        type: Date, 
         required: true
     },
     email: {
@@ -40,11 +40,11 @@ const usuarioSchema = new mongoose.Schema({
     }, 
     // Con esto controlamos si el usuario usará el nombre real
     //  o el nickname
-    anonimo: {
-        type: Boolean,
+    tipoPrivacidad: {
+        type: String,
         default: true,
     },
-    tipo: {
+    tipoCuenta: {
         type: String, 
         required: true
     },

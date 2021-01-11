@@ -22,14 +22,14 @@
 
         <div class="mb-3">
             <label for="fechaNaci" class="form-label" >Fecha de Nacimiento</label>
-            <input type="text" class="form-control" id="fechaNaci" name="fechaNaci" placeholder="DD/MM/AAAA"  />
+            <input type="date" class="form-control" id="fechaNaci" name="fechaNaci" placeholder="DD/MM/AAAA"  />
             
         </div>
 
         <div class="mb-3">
             <label for="email" class="form-label">Correo electrónico</label>
             <input type="email" class="form-control" id="email" name="email" />
-            <div id="emailHelp" class="form-text">Nunca compartiremos tu correo electrónico con nadie más.</div>
+            <div id="none" class="form-text">Nunca compartiremos tu correo electrónico con nadie más.</div>
         </div>
 
         <div class="mb-3">
@@ -41,17 +41,17 @@
             <label for="tipoCuenta" class="form-label">¿Quien eres?</label><br/>
             <select class="form-select form-select-sm" name="tipoCuenta">
                 <option selected>Selecciona...</option>
-                <option value="familia">Familiar</option>
-                <option value="usuario">Usuario</option>
+                <option value="Familiar">Familiar</option>
+                <option value="Usuario">Usuario</option>
             </select>
         </div>
 
         <div class="mb-3">
-            <div id="emailHelp" class="form-text">Opciones de privacidad</div>
+            <div id="privacidad" class="form-text">Opciones de privacidad</div>
             <select class="form-select form-select-sm" name="tipoPrivacidad">
                 <option selected>Selecciona...</option>
-                <option value="soloalias">Anónimo</option>
-                <option value="solonombre">Mostrar nombre y apellido</option>
+                <option value="Alias">Anónimo</option>
+                <option value="Nombre">Mostrar nombre y apellido</option>
             </select>
         </div>
 
@@ -61,7 +61,4 @@
 
     </div>
 
-    <script src="https://unpkg.com/axios/dist/axios.min.js"></script>
-    <script src='../src/signup.js'></script>
-
-<%- include("./partials/footer.ejs") %>
+<%- include("./partials/footer-signup.ejs") %>

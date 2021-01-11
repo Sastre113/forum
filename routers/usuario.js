@@ -53,9 +53,19 @@ router.get('/usuarios/me', auth, async (req, res) => {
     res.send(req.usuario)
 })
 
+router.get('/usuarios/all', auth,async (req, res) => {
+    try {
+        const usuarios = await Usuario.find({})
+        res.send(usuarios)
+    } catch (error) {
+        res.status(500).send()
+    }
+})
+
+
 router.patch('/usuarios/me', auth, async (req, res) => {
     const updates = Object.keys(req.body)
-    const allowedUpdates = ['tipo','nombre','apellido','fechaNacimiento', 'email','tipoPrivacidad','password']
+    const allowedUpdates = ['nickname','nombre','apellido','fechaNacimiento', 'email','password','tipoPrivacidad','tipoCuenta']
     const isValidOperation = updates.every((update) => allowedUpdates.includes(update))
 
     if (!isValidOperation) {

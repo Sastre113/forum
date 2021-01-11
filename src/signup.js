@@ -1,4 +1,6 @@
-import axios from 'axios';
+import axios from './axiosConfig';
+import './polyfill.min.js'
+
 const createForm = document.querySelector('#user-form-create')
 createForm.addEventListener('submit', async (e) => {
     e.preventDefault()
@@ -19,9 +21,10 @@ createForm.addEventListener('submit', async (e) => {
         "tipoPrivacidad": e.target.elements.tipoPrivacidad.value,
     }
 
+    console.log(usuario)
     try {
 
-        const resultado = await axios.post('/api/usuarios', usuario)
+        const resultado = await axios.post('/usuarios', usuario)
 
         console.log(resultado)
 
