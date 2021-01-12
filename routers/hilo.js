@@ -1,6 +1,5 @@
 const express = require('express');
 const router = new express.Router();
-const auth = require('../middleware/auth');
 const Hilo = require('../models/hilo');
 
 router.post('/hilos', async (req, res) => {

@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+import axios from '../axiosConfig'
 
 // Components
 import Menu from './Menu';
@@ -10,11 +11,28 @@ import Post from './Post';
 
 
 export default class App extends Component {
+
+  constructor(props) {
+    super(props)
+    this.state = {
+      usuarioActual: {}
+    }
+  }
+
+  componentDidMount() {
+    const currentUser = axios.get('http://localhost:3001/api/usuarios/me',);
+    Promise.all([currentUser]).then(values => {
+      this.setState({ usuarioActual: values[0].data })
+    })
+  }
+
   render() {
     return (
       <div>
-        <Menu />
-        <Inicio />
+        <Menu usuarioActual={this.state.usuarioActual}/>
+        <div className='main-container'>
+          <Inicio />
+        </div>
         <Footer />
       </div>
     )

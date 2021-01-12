@@ -1,16 +1,14 @@
 import React, { Component } from 'react';
-import {Link} from 'react-router-dom';
+import { Link } from 'react-router-dom';
 import Modal from 'react-modal';
 
-
-
-
-// Components
 
 export default class Menu extends Component {
 
     state = {
-        modalThreadState: false
+        modalThreadState: false,
+        newThread: "",
+        threadMsg: ""
     }
 
     controlModalThread = () => {
@@ -19,37 +17,76 @@ export default class Menu extends Component {
         })
     }
 
+    // Funcionamiento del metodo
+    //     1. Pedir el usuario que esta conectado ahora mismo
+    //     2. 
+
+
+    onSubmit = () => {
+        
+    }
+
+    onChange = e => {
+        const tipo = e.target.name;
+        const valor = e.target.value;
+        this.setState({
+            [tipo]: valor
+        })
+    }
+
     componentDidMount() {
         Modal.setAppElement('body');
     }
+
     render() {
         return (
             <div>
-                <div className='navForo'>
+                <div className='nav-Menu'>
                     <ul>
-                        <li> Wundt </li>
-                        <li> <a>Home</a>  </li>
-                        <li> <a onClick={this.controlModalThread}>Nuevo Tema </a>  </li>
-                        <li><Link to='/logout'>Cerrar Sesión</Link></li>
+                        <li className='nav-Menu-Logo'>
+                            <div className='nav-container-logo'>
+                                <img className='img-logo' src="/img/logoWundt256x256.ico" alt="Girl in a jacket" />
+                                <div className='overlay-logo-text'>Wundt</div>
+                            </div>
 
+                        </li>
+                        <div className='nav-menu-btns'>
+                            <li> <a>Home</a>  </li>
+                            <li> <a onClick={this.controlModalThread}>Nuevo Tema </a>  </li>
+                            <li><Link to='/logout'>Cerrar Sesión</Link></li>
+                        </div>
                     </ul>
                 </div>
-                <div className='modalNewThread'>
+                <div className='modal-new-thread'>
                     <Modal
                         isOpen={this.state.modalThreadState}
                         ariaHideApp={false}
+                        portalClassName='modal-new-thread'
                     >
-                        <div className='btn-closeModal' onClick={this.controlModalThread}>Atras
-                             </div>
-                        <div className='formNewThread'>
-                            <form>
-                                <label htmlFor="fname">First name:</label>
-                                <input type="text" id="fname" name="fname" value="John" />
-                                <label htmlFor="lname">Last name:</label>
-                                <input type="text" id="lname" name="lname" value="Doe" />
-                                <input type="submit" value="Submit" />
-                            </form>
-                        </div>
+                        <form className="new-thread-form" onSubmit={this.onSubmit}>
+                            <h2>Nuevo Tema</h2>
+                            <p>Rellene todos los campos.</p>
+                            <div className="new-thread-title-area">
+                                <label htmlFor="titulo" className="form-label">Titulo</label>
+                                <input className="form-control input-title-thread" type="text" name="title-thread"
+                                    onChange={this.onChange} value={this.state.newTitle}
+
+                                />
+                            </div>
+                            <div className="new-thread-msg-area">
+                                <label htmlFor="body-first-post">Mensaje</label>
+                                <textarea className="form-control textarea-body-thread" rows="3" name="body-thread"
+                                    onChange={this.onChange} value={this.state.newBody}
+
+                                />
+                            </div>
+
+                            <div className='btns-modal-form'>
+                                <button className="btn btn-primary btn-modal-send" type="submit" >Enviar</button>
+                                <button className="btn btn-primary btn-modal-close" type="button" onClick={this.controlModalThread}>Cerrar</button>
+                            </div>
+
+                        </form>
 
                     </Modal>
                 </div>

@@ -6,22 +6,64 @@
 
 /* Estilo Barra de Navegación */
 
-
-.navForo {
+.nav-Menu {
   //background-color: rgb(11, 178, 255);
-  background-color: rgb(19, 136, 204) ;
+  background-color: rgb(19, 136, 204);
   list-style-type: none;
   overflow: hidden;
   position: sticky; // Esto no funciona, de momento.
   top: 0;
+  width: 100%;
+  min-width: 150px;
 
-  ul{
+  .nav-Menu-Logo {
+    font-family: cursive;
+    padding-left: 30px;
+
+    .nav-container-logo {
+      position: relative;
+      text-align: center;
+      color: white;
+
+      .img-logo {
+        display: block;
+        position: relative;
+        height: 60px;
+        width: 60px;
+        background: #ff8f00;
+        border-radius: 20px;
+        transform: skew(-10deg);
+      }
+
+      .overlay-logo-text {
+        font-size: 24px;
+        color: red;
+        position: absolute;
+        top: 50%;
+        left: 50%;
+        transform: translate(-50%, -50%);
+        opacity: 0;
+        transition: 0.5s ease;
+        background-color: #ff8f00;
+        border-radius: 35%;
+      }
+
+      .overlay-logo-text:hover {
+        opacity: 1;
+      }
+    }
+  }
+  .nav-menu-btns {
+    margin-left: 100px;
+  }
+
+  ul {
     list-style-type: none;
-    
+
     li {
       float: left;
       font-size: 20px;
-  
+
       a {
         cursor: pointer;
         display: block;
@@ -36,13 +78,21 @@
     }
   }
 }
-/* Estilo Inicio */
+
+/* Estilo App*/
+
+.main-container {
+  margin-top: -20px;
+}
+
+/* Estilo componente "Inicio" */
 
 .containerInicio {
   max-height: 200px;
+  margin-top: 30px;
 }
 
-.thread {
+.initial-thread {
   display: grid;
   margin: 10px;
   grid-template-columns: 200px auto;
@@ -54,23 +104,49 @@
   border-radius: 5px;
 }
 
-.authorThread {
+.initial-author-Thread {
   background-color: black;
   color: white;
   margin: 5px;
   text-align: center;
   border-radius: 10px;
   max-height: 90px;
-}
-
-.authorThread {
   padding: 10px;
 }
-.bodyThread {
+
+.initial-body-Thread {
   padding-left: 5px;
+
+  .initial-route-Thread {
+    cursor: pointer;
+  }
+  .initial-title-Thread {
+    font-size: 20px;
+    font-weight: bold;
+  }
+  .initial-Thread {
+    font-size: 12px;
+  }
 }
 
-/*  */
+/* Formulario Modal */
+
+.modal-new-thread {
+  .new-thread-form {
+    .btns-modal-form {
+      margin-top: 20px;
+
+      .btn-modal-send {
+        background-color: green;
+      }
+
+      .btn-modal-close {
+        background-color: red;
+        margin-left: 5px;
+      }
+    }
+  }
+}
 
 .btn-closeModal {
   padding: 15px 25px;

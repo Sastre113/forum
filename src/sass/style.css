@@ -6,24 +6,68 @@
 }
 
 /* Estilo Barra de Navegación */
-.navForo {
+.nav-Menu {
   background-color: #1388cc;
   list-style-type: none;
   overflow: hidden;
   position: sticky;
   top: 0;
+  width: 100%;
+  min-width: 150px;
 }
 
-.navForo ul {
+.nav-Menu .nav-Menu-Logo {
+  font-family: cursive;
+  padding-left: 30px;
+}
+
+.nav-Menu .nav-Menu-Logo .nav-container-logo {
+  position: relative;
+  text-align: center;
+  color: white;
+}
+
+.nav-Menu .nav-Menu-Logo .nav-container-logo .img-logo {
+  display: block;
+  position: relative;
+  height: 60px;
+  width: 60px;
+  background: #ff8f00;
+  border-radius: 20px;
+  transform: skew(-10deg);
+}
+
+.nav-Menu .nav-Menu-Logo .nav-container-logo .overlay-logo-text {
+  font-size: 24px;
+  color: red;
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  opacity: 0;
+  transition: 0.5s ease;
+  background-color: #ff8f00;
+  border-radius: 35%;
+}
+
+.nav-Menu .nav-Menu-Logo .nav-container-logo .overlay-logo-text:hover {
+  opacity: 1;
+}
+
+.nav-Menu .nav-menu-btns {
+  margin-left: 100px;
+}
+
+.nav-Menu ul {
   list-style-type: none;
 }
 
-.navForo ul li {
+.nav-Menu ul li {
   float: left;
   font-size: 20px;
 }
 
-.navForo ul li a {
+.nav-Menu ul li a {
   cursor: pointer;
   display: block;
   color: black;
@@ -32,16 +76,22 @@
   padding: 14px 16px;
 }
 
-.navForo ul li a:hover {
+.nav-Menu ul li a:hover {
   background-color: white;
 }
 
-/* Estilo Inicio */
-.containerInicio {
-  max-height: 200px;
+/* Estilo App*/
+.main-container {
+  margin-top: -20px;
 }
 
-.thread {
+/* Estilo componente "Inicio" */
+.containerInicio {
+  max-height: 200px;
+  margin-top: 30px;
+}
+
+.initial-thread {
   display: grid;
   margin: 10px;
   grid-template-columns: 200px auto;
@@ -53,24 +103,47 @@
   border-radius: 5px;
 }
 
-.authorThread {
+.initial-author-Thread {
   background-color: black;
   color: white;
   margin: 5px;
   text-align: center;
   border-radius: 10px;
   max-height: 90px;
-}
-
-.authorThread {
   padding: 10px;
 }
 
-.bodyThread {
+.initial-body-Thread {
   padding-left: 5px;
 }
 
-/*  */
+.initial-body-Thread .initial-route-Thread {
+  cursor: pointer;
+}
+
+.initial-body-Thread .initial-title-Thread {
+  font-size: 20px;
+  font-weight: bold;
+}
+
+.initial-body-Thread .initial-Thread {
+  font-size: 12px;
+}
+
+/* Formulario Modal */
+.modal-new-thread .new-thread-form .btns-modal-form {
+  margin-top: 20px;
+}
+
+.modal-new-thread .new-thread-form .btns-modal-form .btn-modal-send {
+  background-color: green;
+}
+
+.modal-new-thread .new-thread-form .btns-modal-form .btn-modal-close {
+  background-color: red;
+  margin-left: 5px;
+}
+
 .btn-closeModal {
   padding: 15px 25px;
   font-size: 10px;
