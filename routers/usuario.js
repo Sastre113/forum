@@ -62,6 +62,22 @@ router.get('/usuarios/all', auth,async (req, res) => {
     }
 })
 
+router.get('/usuarios/:id', async (req, res) => {
+    const _id = req.params.id
+
+    try {
+        const respuesta = await Respuesta.findById(_id)
+
+        if (!respuesta) {
+            return res.status(404).send()
+        }
+
+        res.send(respuesta)
+    } catch (e) {
+        res.status(500).send()
+    }
+})
+
 
 router.patch('/usuarios/me', auth, async (req, res) => {
     const updates = Object.keys(req.body)

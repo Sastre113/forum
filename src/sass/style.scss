@@ -6,32 +6,36 @@
 
 /* Estilo Barra de Navegación */
 
+
 .navForo {
-  background-color: grey;
+  //background-color: rgb(11, 178, 255);
+  background-color: rgb(19, 136, 204) ;
   list-style-type: none;
   overflow: hidden;
   position: sticky; // Esto no funciona, de momento.
   top: 0;
 
-  li {
-    float: left;
-    font-size: 20px;
-
-    a {
-      cursor: pointer;
-      background-color: grey;
-      display: block;
-      color: black;
-      text-align: center;
-      text-decoration: none;
-      padding: 14px 16px;
-    }
-    a:hover {
-      background-color: green;
+  ul{
+    list-style-type: none;
+    
+    li {
+      float: left;
+      font-size: 20px;
+  
+      a {
+        cursor: pointer;
+        display: block;
+        color: black;
+        text-align: center;
+        text-decoration: none;
+        padding: 14px 16px;
+      }
+      a:hover {
+        background-color: white;
+      }
     }
   }
 }
-
 /* Estilo Inicio */
 
 .containerInicio {

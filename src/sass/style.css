@@ -7,21 +7,24 @@
 
 /* Estilo Barra de Navegación */
 .navForo {
-  background-color: grey;
+  background-color: #1388cc;
   list-style-type: none;
   overflow: hidden;
   position: sticky;
   top: 0;
 }
 
-.navForo li {
+.navForo ul {
+  list-style-type: none;
+}
+
+.navForo ul li {
   float: left;
   font-size: 20px;
 }
 
-.navForo li a {
+.navForo ul li a {
   cursor: pointer;
-  background-color: grey;
   display: block;
   color: black;
   text-align: center;
@@ -29,8 +32,8 @@
   padding: 14px 16px;
 }
 
-.navForo li a:hover {
-  background-color: green;
+.navForo ul li a:hover {
+  background-color: white;
 }
 
 /* Estilo Inicio */

@@ -56,6 +56,7 @@ app.get('/forum', (req ,res) => {
     res.render('forum', {title: 'Forum'})
 })
 
+
 app.use(express.json());
 app.use('/api', usuarioRouter);
 app.use('/api', frasesRouter);

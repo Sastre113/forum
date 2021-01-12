@@ -1,11 +1,7 @@
 import React, { Component } from 'react';
-import { BrowserRouter as Router, Route, Link } from 'react-router-dom';
-import axios from 'axios';
+import axios from '../axiosConfig';
 
 import Post from './Post';
-
-const urlAPI = 'http://localhost:3001/api/hilos';
-let textoLargo = "Este post es muy largo Este post es muy largo Este post es muy largo Este post es muy largo Este post es muy largo Este post es muy largo Este post es muy largo Este post es muy largo Este post es muy largo Este post es muy largo Este post es muy largo Este post es muy largo Este post es muy largo Este post es muy largo Este post es muy largo Este post es muy largo Este post es muy largo Este post es muy largo Este post es muy largo Este post es muy largo Este post es muy largo Este post es muy largo Este post es muy largo Este post es muy largo Este post es muy largo Este post es muy largo Este post es muy largo Este post es muy largo Este post es muy largo Este post es muy largo Este post es muy largo Este post es muy largo Este post es muy largo Este post es muy largo Este post es muy largo Este post es muy largo Este post es muy largo Este post es muy largo Este post es muy largo Este post es muy largo Este post es muy largo Este post es muy largo Este post es muy largo Este post es muy largo Este post es muy largo Este post es muy largo Este post es muy largo Este post es muy largo Este post es muy largo Este post es muy largo Este post es muy largo Este post es muy largo Este post es muy largo ";
 
 
 export default class Inicio extends Component {
@@ -13,51 +9,57 @@ export default class Inicio extends Component {
     constructor(props) {
         super(props)
         this.state = {
-            hilos: [
-                {
-                    idThread: '1',
-                    autor: '1º Paciente',
-                    hilo: 'Ezquizofrenía',
-                    post: 'Lorem que te lorem sus'
-                },
-                {
-                    idThread: '2',
-                    autor: '2º Paciente',
-                    hilo: 'Paranoia',
-                    post: textoLargo
-                },
-                {
-                    idThread: '3',
-                    autor: '3º Paciente',
-                    hilo: 'Dislexia',
-                    post: 'Aqui va como inicia el post'
-                }
-            ]
+            usuarios: [{}],
+            hilos: [{}]
         }
     }
 
     componentDidMount() {
-        const res = axios.get(urlAPI,); 
-        res.then((array) =>{
-            this.setState({ hilos: array.data })
-        })  
+        const threads = axios.get('http://localhost:3001/api/hilos',);
+        const users = axios.get('http://localhost:3001/api/usuarios/all',);
+        
+        Promise.all([threads,users]).then( values =>{
+            console.log(values)
+            this.setState({hilos: values[0].data, usuarios: values[1].data})
+        })
     }
+
+
+    dameNombre = (idAuthor) => {
+        let auxNombre = "";
+        const usuario = this.state.usuarios.find(usuario => {
+            return usuario._id === idAuthor;
+        })
+        
+        if(usuario)
+            auxNombre = usuario.nombre;
+        
+        return auxNombre
+    }
+
 
     render() {
         return (
-            
+
             <div className='containerInicio'>
-                {
+                {console.log(this.state.hilos)}
+                {   
+                
                     this.state.hilos.map(hilo => {
                         return <div className='thread' key={hilo.idThread}>
                             <div className='authorThread'>
-                                {hilo.idAuthor} {/* Esto hace de autor del hilo */}
+                                {
+                                    this.dameNombre(hilo.idAuthor)
+                                } {/* Esto hace de autor del hilo */}
                             </div>
                             <div className='bodyThread'>
-                                <h1 className='titleThread'>{hilo.titleThread}</h1> {/* Esto hace de titulo del hilo */}
-                                <span className='initialPost'> {hilo.bodyThread} </span>
+                                <h1 className='titleThread'>
+                                    {hilo.titleThread}
+                                </h1>
+                                <span className='initialPost'>
+                                    {hilo.bodyThread}
+                                </span>
                             </div>
-                            
                         </div>
                     })
                 }

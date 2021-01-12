@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import { BrowserRouter as Router, Route, Switch } from 'react-router-dom';
 import App from '../components/App';
+import Logout from '../components/Logout';
 
 
 
@@ -11,6 +12,7 @@ export default function PostRouter() {
             <Router>
                 <Switch>
                     <Route path='/forum' component={App} />
+                    <Route path='/logout' component={Logout} />
                 </Switch>
             </Router>
         );

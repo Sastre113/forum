@@ -1,10 +1,11 @@
 import React, { Component } from 'react';
-import Modal from 'react-modal'
-import axios from '../axiosConfig';
+import {Link} from 'react-router-dom';
+import Modal from 'react-modal';
+
+
 
 
 // Components
-
 
 export default class Menu extends Component {
 
@@ -12,34 +13,31 @@ export default class Menu extends Component {
         modalThreadState: false
     }
 
-
     controlModalThread = () => {
-        console.log('Hola, pedro', this.state.modalThreadState)
         this.setState({
             modalThreadState: !this.state.modalThreadState
         })
     }
 
-    logout() {
-        axios.post('usuarios/logout').then(() => {
-            localStorage.removeItem('auth-token');
-            window.location.href = '/';
-        }).catch((e) => {
-            console.log(e);
-        });
+    componentDidMount() {
+        Modal.setAppElement('body');
     }
-
     render() {
         return (
             <div>
                 <div className='navForo'>
-                    <li> <a>Home</a>  </li>
-                    <li> <a onClick={this.controlModalThread}>Nuevo Tema </a>  </li>
-                    <li> <a onClick={this.logout}>Cerrar Sesión</a>  </li>
+                    <ul>
+                        <li> Wundt </li>
+                        <li> <a>Home</a>  </li>
+                        <li> <a onClick={this.controlModalThread}>Nuevo Tema </a>  </li>
+                        <li><Link to='/logout'>Cerrar Sesión</Link></li>
+
+                    </ul>
                 </div>
                 <div className='modalNewThread'>
                     <Modal
                         isOpen={this.state.modalThreadState}
+                        ariaHideApp={false}
                     >
                         <div className='btn-closeModal' onClick={this.controlModalThread}>Atras
                              </div>
