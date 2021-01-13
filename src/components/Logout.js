@@ -1,4 +1,10 @@
+
+// React
+
 import React, { Component } from 'react';
+
+// Config
+
 import axios from '../axiosConfig';
 
 export default class Logout extends Component {

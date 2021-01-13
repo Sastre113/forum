@@ -1,6 +1,10 @@
+
+// React
+
 import React, { Component } from 'react';
-import Menu from './Menu';
-import Footer from './Footer';
+
+// Components
+
 
 export default class Reply extends Component {
 
@@ -11,9 +15,7 @@ export default class Reply extends Component {
     render() {
         return (
             <div>      
-                Hola
-                {console.log('Estoy escribiendo en la consola')}
-                <Footer />
+
             </div>
         )
     }

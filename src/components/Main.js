@@ -1,13 +1,22 @@
+
+// React
+
 import React, { Component } from 'react';
 import { BrowserRouter as Router, Route, Switch } from 'react-router-dom';
+
+// Config
+
 import axios from '../axiosConfig';
 
-// Imports de components
-import Menu from '../components/Menu';
-import Hilos from '../components/Hilos'
-import Footer from '../components/Footer';
-import Logout from '../components/Logout';
-import Reply from '../components/Reply'
+// Components
+
+import Nav from './Nav';
+import Logout from './Logout';
+import Threads from './Threads';
+import Replys from './Replys';
+import Footer from './Footer';
+
+
 
 export default class Main extends Component {
 

@@ -58,8 +58,8 @@ app.use('/api', frasesRouter);
 app.use('/api', hiloRouter);
 
 
-app.get('/forum', (req ,res) => {
-  res.render('forum', {title: 'Forum'})
+app.get('/*', (req ,res) => {
+  res.render('index', {title: 'Forum'})
 })
 
 // 404 page

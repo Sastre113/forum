@@ -1,8 +1,14 @@
+
+// React
+
 import React, { Component } from 'react';
 import { Link } from 'react-router-dom';
+
+// Config
+
 import axios from '../axiosConfig';
 
-
+// Components
 
 export default class Hilos extends Component {
 

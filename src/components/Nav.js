@@ -1,8 +1,16 @@
+
+// React
+
 import React, { Component } from 'react';
 import { Link } from 'react-router-dom';
 import Modal from 'react-modal';
+
+// Config
+
 import axios from '../axiosConfig'
 import '../polyfill.min.js';
+
+// Components
 
 
 export default class Menu extends Component {
