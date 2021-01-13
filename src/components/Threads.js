@@ -14,19 +14,10 @@ export default class Hilos extends Component {
 
     constructor(props) {
         super(props)
-        this.state = {
-            usuarios: [],
-            hilos: []
-        }
     }
 
     componentDidMount() {
-        const threads = axios.get('/hilos',);
-        const users = axios.get('/usuarios/all',);
-
-        Promise.all([threads, users]).then(values => {
-            this.setState({ hilos: values[0].data, usuarios: values[1].data })
-        })
+        this.props.recargarHilos()
     }
 
     /*
@@ -37,7 +28,7 @@ export default class Hilos extends Component {
 
     getPerfil = (idAuthor) => {
         let auxPerfil = {};
-        const usuario = this.state.usuarios.find(usuario => {
+        const usuario = this.props.usuarios.find(usuario => {
             return usuario._id === idAuthor;
         })
 
@@ -51,19 +42,12 @@ export default class Hilos extends Component {
         return auxPerfil;
     }
 
-    // crearRuta = (idThread) =>{
-    //     return `/Reply/${idThread}`
-    // }
-
-
     render() {
         return (
 
             <div className='containerHilos'>
                 {
-                    // Aqui es donde deberíamos
-                    //  controlar que hilos ve el usuario
-                    this.state.hilos.map(hilo => {
+                    this.props.hilos.map(hilo => {
                         return <div className='initial-thread' key={hilo._id}>
                             <div className='initial-author-Thread'>
                                 {
@@ -72,7 +56,7 @@ export default class Hilos extends Component {
                             </div>
 
                             <div className='initial-body-Thread' >
-                                <Link to='/replys'>
+                                <Link to={`/forum/${hilo._id}`}>
                                     <div className='initial-route-Thread'>
                                         <p className='initial-title-Thread' >
                                             {hilo.titleThread}

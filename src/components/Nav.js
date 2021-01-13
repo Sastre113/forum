@@ -15,12 +15,14 @@ import '../polyfill.min.js';
 
 export default class Menu extends Component {
 
-    state = {
-        modalThreadState: false,
-        threadTitle: "",
-        threadMsg: "",
-        threadDisease: ""
-
+    constructor(props) {
+        super(props)
+        this.state = {
+            modalThreadState: false,
+            threadTitle: "",
+            threadMsg: "",
+            threadDisease: ""
+        }
     }
 
     controlModalThread = () => {
@@ -31,23 +33,16 @@ export default class Menu extends Component {
 
     onSubmit = async (e) => {
         e.preventDefault();
-        debugger
         const newRequest = {
-            newThread : {
-                idAuthor: this.props.usuarioActual._id,
-                disease: this.state.threadDisease,
-                titleThread: this.state.threadTitle,
-                bodyThread: this.state.threadMsg
-            }
+            idAuthor: this.props.usuarioActual._id,
+            disease: this.state.threadDisease,
+            titleThread: this.state.threadTitle,
+            bodyThread: this.state.threadMsg
         }
-        const res = await axios.post('/hilos', newThread);
-        
-        const newReply = {
-            idThread: res.data.hilo.idThread,
-        }
-        
-        await axios.post('/respuestas', newReply);
 
+        const res = await axios.post('/hilos', newRequest);
+        this.props.recargarHilos();
+        this.controlModalThread();
     }
 
     onChange = e => {
@@ -70,7 +65,7 @@ export default class Menu extends Component {
                     <ul>
                         <li className='nav-Menu-Logo'>
                             <div className='nav-container-logo'>
-                                <img className='img-logo' src="/img/logoWundt256x256.ico" alt="Girl in a jacket" />
+                                <img className='img-logo' src="/img/logoWundt256x256.ico" alt="logoWundt" />
                                 <div className='overlay-logo-text'>Wundt</div>
                             </div>
                         </li>
@@ -82,6 +77,8 @@ export default class Menu extends Component {
                         </div>
                     </ul>
                 </div>
+                
+                
                 <Modal
                     isOpen={this.state.modalThreadState}
                     ariaHideApp={false}

@@ -132,6 +132,41 @@ $base-color: rgb(19, 136, 204);
   }
 }
 
+/*  Estilos componente Reply  */
+
+.container-reply {
+  background-color: rgb(15, 90, 230);
+  margin: 10px;
+  border-radius: 10px;
+  .container-main-thread{
+    background-color: purple;
+
+    .main-thread{
+      top: 0;
+      background-color: green;
+      width: 50%;
+      height: auto;
+      float: left;
+      position: sticky;
+
+      // .main-thread-authorName{
+
+      // }
+
+      // .main-thread-bodyThread{
+
+      // }
+    }
+  }
+  
+
+  .container-body-reply {
+    background-color: blue;
+    border-radius: 10px;
+    margin-bottom: -5px;
+  }
+}
+
 /* Formulario Modal */
 
 .modal-new-thread {
@@ -187,7 +222,6 @@ $base-color: rgb(19, 136, 204);
   }
 }
 
-
 /*          AQUI TERMINA EL CSS DE REACT         */
 /*************************************************/
 /*************************************************/
@@ -195,6 +229,3 @@ $base-color: rgb(19, 136, 204);
 /*************************************************/
 /*************************************************/
 /*                Estilos para EJS               */
-
-
-

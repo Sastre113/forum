@@ -131,6 +131,32 @@
   font-size: 12px;
 }
 
+/*  Estilos componente Reply  */
+.container-reply {
+  background-color: #0f5ae6;
+  margin: 10px;
+  border-radius: 10px;
+}
+
+.container-reply .container-main-thread {
+  background-color: purple;
+}
+
+.container-reply .container-main-thread .main-thread {
+  top: 0;
+  background-color: green;
+  width: 50%;
+  height: auto;
+  float: left;
+  position: sticky;
+}
+
+.container-reply .container-body-reply {
+  background-color: blue;
+  border-radius: 10px;
+  margin-bottom: -5px;
+}
+
 /* Formulario Modal */
 .modal-new-thread {
   position: absolute;

@@ -25,13 +25,27 @@ export default class Main extends Component {
         this.state = {
             usuarioActual: {},
             auth: localStorage.getItem('auth-token'),
-            idThreadSelect: ''
+            idThreadSelect: '',
+            usuarios: [],
+            hilos: []
         }
     }
 
-    setIdThreadSelect = (idThread) =>{
+    setIdThreadSelect = (idThread) => {
         this.setState({
             idThreadSelect: idThread
+        })
+    }
+
+    recargarHilos = () => {
+        const threads = axios.get('/hilos',);
+        const users = axios.get('/usuarios/all',);
+
+        Promise.all([threads, users]).then(values => {
+            this.setState({
+                hilos: values[0].data,
+                usuarios: values[1].data
+            })
         })
     }
 
@@ -48,10 +62,22 @@ export default class Main extends Component {
                 <div>
                     <Router>
                         <div>
-                            <Nav usuarioActual={this.state.usuarioActual} />
+                            <Nav 
+                                recargarHilos={this.recargarHilos} 
+                                usuarioActual={this.state.usuarioActual} 
+                            />
                             <Switch>
-                                <Route path='/forum' component={Threads} idThreadSelect={this.state.idThreadSelect} />
-                                <Route path='/replys' component={Replys} />
+                                <Route path='/forum/:id' component={Replys} />
+                                <Route 
+                                    path='/forum'
+                                    render={ () =>
+                                        <Threads
+                                            usuarios={this.state.usuarios}
+                                            hilos={this.state.hilos}
+                                            recargarHilos={this.recargarHilos}
+                                        />
+                                    }
+                                />
                                 <Route path='/logout' component={Logout} />
                             </Switch>
                             <Footer />
