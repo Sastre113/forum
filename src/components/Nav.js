@@ -30,26 +30,24 @@ export default class Menu extends Component {
     }
 
     onSubmit = async (e) => {
-        const newThread = {
-            idAuthor: this.props.usuarioActual._id,
-            disease: this.state.threadDisease,
-            titleThread: this.state.threadTitle,
-            bodyThread: this.state.threadMsg
-            }
-
-        let elHilo = await axios.post('/hilos', newThread);
-
-        //const newReply = {
-        //     idThread:,
-        //     idAuthor: this.props.usuarioActual._id,
-        //     titleThread: this.state.threadTitle,
-        //     bodyThread: this.state.threadMsg
-        // }
-
-
-        // const res = await axios.post('/respuestas', newReply);
-        //await axios.post('/respuestas', newReply);
         e.preventDefault();
+        debugger
+        const newRequest = {
+            newThread : {
+                idAuthor: this.props.usuarioActual._id,
+                disease: this.state.threadDisease,
+                titleThread: this.state.threadTitle,
+                bodyThread: this.state.threadMsg
+            }
+        }
+        const res = await axios.post('/hilos', newThread);
+        
+        const newReply = {
+            idThread: res.data.hilo.idThread,
+        }
+        
+        await axios.post('/respuestas', newReply);
+
     }
 
     onChange = e => {

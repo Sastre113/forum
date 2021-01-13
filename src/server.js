@@ -7,6 +7,8 @@ const frasesSalut = require('../models/frasesSalut');
 const usuarioRouter = require('../routers/usuario');
 const frasesRouter = require('../routers/frasesSalut');
 const hiloRouter = require('../routers/hilo');
+const respuestaRouter = require('../routers/respuesta');
+
 
 const auth = require('../middleware/auth')
 
@@ -56,6 +58,7 @@ app.use(express.json());
 app.use('/api', usuarioRouter);
 app.use('/api', frasesRouter);
 app.use('/api', hiloRouter);
+app.use('/api', respuestaRouter);
 
 
 app.get('/*', (req ,res) => {

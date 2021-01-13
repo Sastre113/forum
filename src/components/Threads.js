@@ -72,11 +72,11 @@ export default class Hilos extends Component {
                             </div>
 
                             <div className='initial-body-Thread' >
-                                <Link to='/Reply'>
+                                <Link to='/replys'>
                                     <div className='initial-route-Thread'>
-                                        <a className='initial-title-Thread' >
+                                        <p className='initial-title-Thread' >
                                             {hilo.titleThread}
-                                        </a><br />
+                                        </p><br />
                                         <span className='initial-body-post'>
                                             {hilo.bodyThread}
                                         </span>

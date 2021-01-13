@@ -2,11 +2,11 @@ const mongoose = require('mongoose');
 
 const respuestaSchema = new mongoose.Schema({
     idThread: {
-        type: Number,
+        type: String,
         required: true
     },
     idAuthor: {
-        type: Number,
+        type: String,
         required: true
     },
     titleReply: {

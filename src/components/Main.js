@@ -24,10 +24,17 @@ export default class Main extends Component {
         super(props)
         this.state = {
             usuarioActual: {},
-            auth: localStorage.getItem('auth-token')
+            auth: localStorage.getItem('auth-token'),
+            idThreadSelect: ''
         }
-
     }
+
+    setIdThreadSelect = (idThread) =>{
+        this.setState({
+            idThreadSelect: idThread
+        })
+    }
+
 
     componentDidMount() {
         const currentUser = axios.get('/usuarios/me',);
@@ -36,7 +43,6 @@ export default class Main extends Component {
         })
     }
     render() {
-        console.log('Este es el valor de auth: ', this.state.auth)
         if (this.state.auth) {
             return (
                 <div>
@@ -44,7 +50,7 @@ export default class Main extends Component {
                         <div>
                             <Nav usuarioActual={this.state.usuarioActual} />
                             <Switch>
-                                <Route path='/forum' component={Threads} />
+                                <Route path='/forum' component={Threads} idThreadSelect={this.state.idThreadSelect} />
                                 <Route path='/replys' component={Replys} />
                                 <Route path='/logout' component={Logout} />
                             </Switch>

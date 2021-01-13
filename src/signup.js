@@ -7,23 +7,22 @@ createForm.addEventListener('submit', async (e) => {
 
     const usuario =
     {   
-        // Hay que agregar nickname
+        
         "nickname": e.target.elements.alias.value,
         "nombre": e.target.elements.nombre.value,
         "apellido": e.target.elements.apellidos.value,
         "fechaNacimiento": e.target.elements.fechaNaci.value,
         "email": e.target.elements.email.value,
-        // Minimo 6 caracteres alfanumericos
         "password": e.target.elements.password.value,
-        // Anonimo Si o No
-        "tipoCuenta": e.target.elements.tipoCuenta.value,
         // Familiar o Paciente/Enfermo
+        "tipoCuenta": e.target.elements.tipoCuenta.value,
+        // Anonimo Si o No
         "tipoPrivacidad": e.target.elements.tipoPrivacidad.value,
     }
 
     try {
         const resultado = await axios.post('/usuarios', usuario)
-        // console.log(resultado)
+        console.log(resultado)
     } catch (error) {
         console.log(error)
     }
