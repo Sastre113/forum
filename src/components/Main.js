@@ -42,10 +42,10 @@ export default class Main extends Component {
                 <div>
                     <Router>
                         <div>
-                            <Menu usuarioActual={this.state.usuarioActual} />
+                            <Nav usuarioActual={this.state.usuarioActual} />
                             <Switch>
-                                <Route path='/forum' component={Hilos} />
-                                <Route path='/reply' component={Reply} />
+                                <Route path='/forum' component={Threads} />
+                                <Route path='/replys' component={Replys} />
                                 <Route path='/logout' component={Logout} />
                             </Switch>
                             <Footer />

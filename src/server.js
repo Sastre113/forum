@@ -59,7 +59,7 @@ app.use('/api', hiloRouter);
 
 
 app.get('/*', (req ,res) => {
-  res.render('index', {title: 'Forum'})
+  res.render('forum', {title: 'Forum'})
 })
 
 // 404 page
