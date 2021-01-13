@@ -1,82 +1,73 @@
 import React, { Component } from 'react';
-import { BrowserRouter as Router, Route, Link } from 'react-router-dom';
+import axios from '../axiosConfig';
 
-import Post from './Post';
 
-let textoLargo = "Este post es muy largo Este post es muy largo Este post es muy largo Este post es muy largo Este post es muy largo Este post es muy largo Este post es muy largo Este post es muy largo Este post es muy largo Este post es muy largo Este post es muy largo Este post es muy largo Este post es muy largo Este post es muy largo Este post es muy largo Este post es muy largo Este post es muy largo Este post es muy largo Este post es muy largo Este post es muy largo Este post es muy largo Este post es muy largo Este post es muy largo Este post es muy largo Este post es muy largo Este post es muy largo Este post es muy largo Este post es muy largo Este post es muy largo Este post es muy largo Este post es muy largo Este post es muy largo Este post es muy largo Este post es muy largo Este post es muy largo Este post es muy largo Este post es muy largo Este post es muy largo Este post es muy largo Este post es muy largo Este post es muy largo Este post es muy largo Este post es muy largo Este post es muy largo Este post es muy largo Este post es muy largo Este post es muy largo Este post es muy largo Este post es muy largo Este post es muy largo Este post es muy largo Este post es muy largo Este post es muy largo ";
-let miVariable = 0;
 
 export default class Inicio extends Component {
 
-    // state = {
-    //     temas: [
-    //         {
-    //             autor: '1º Paciente',
-    //             tema: 'Ezquizofrenía',
-    //             post: 'Lorem que te lorem sus'
-    //         },
-    //         {
-    //             autor: '2º Paciente',
-    //             tema: 'Paranoia',
-    //             post: textoLargo
-    //         },
-    //         {
-    //             autor: '3º Paciente',
-    //             tema: 'Dislexia',
-    //             post: 'Aqui va como inicia el post'
-    //         }
-    //     ]
-    // }
-    
-constructor(props){
-    super(props)
-    this.state = {
-        temas: [
-            {
-                autor: '1º Paciente',
-                tema: 'Ezquizofrenía',
-                post: 'Lorem que te lorem sus'
-            },
-            {
-                autor: '2º Paciente',
-                tema: 'Paranoia',
-                post: textoLargo
-            },
-            {
-                autor: '3º Paciente',
-                tema: 'Dislexia',
-                post: 'Aqui va como inicia el post'
-            }
-        ]
+    constructor(props) {
+        super(props)
+        this.state = {
+            usuarios: [],
+            hilos: []
+        }
     }
-}
 
-    // async componentDidMount() {
-    //     const res = await fetch('https://jsonplaceholder.typicode.com/comments');
-    //     let data = await res.json();
+    componentDidMount() {
+        const threads = axios.get('/hilos',);
+        const users = axios.get('/usuarios/all',);
 
-    //     //this.setState({ temas: data })
-    // }
+        Promise.all([threads, users]).then(values => {
+            this.setState({ hilos: values[0].data, usuarios: values[1].data })
+        })
+    }
+
+    /*
+     *   El método recibe el idAuthor
+     *     y devuelve el nombre o nickname del usuario
+     *  
+     */
+
+    getPerfil = (idAuthor) => {
+        let auxPerfil = {};
+        const usuario = this.state.usuarios.find(usuario => {
+            return usuario._id === idAuthor;
+        })
+
+        if (usuario) {
+            usuario.tipoPrivacidad == 'Anónimo' ?
+                auxPerfil = { nombre: usuario.nickname } :
+                auxPerfil = { nombre: `${usuario.nombre} ${usuario.apellido}` };
+        }
+
+        return auxPerfil;
+    }
 
     render() {
         return (
+
             <div className='containerInicio'>
                 {
-                    this.state.temas.map(tema => {
-                        return <div className='thread'>
-                                <div className='authorThread'>
-                                    {tema.autor} {/* Esto hace de autor del tema */}
+                    // Aqui es donde deberíamos
+                    //  controlar que hilos ve el usuario
+                    this.state.hilos.map(hilo => {
+                        return <div className='initial-thread' key={hilo._id}>
+                            <div className='initial-author-Thread'>
+                                {
+                                    this.getPerfil(hilo.idAuthor).nombre
+                                } 
+                            </div>
+                            <div className='initial-body-Thread'>
+                                <div className='initial-route-Thread'>
+                                    <a className='initial-title-Thread' >
+                                        {hilo.titleThread}
+                                    </a><br />
+                                    <span className='initial-body-post'>
+                                        {hilo.bodyThread}
+                                    </span>
                                 </div>
-                                <div className='bodyThread'>
-                                    <Router>
-                                        <Link><h1 className='titleThread'>{tema.tema}</h1> </Link>{/* Esto hace de titulo del tema */} 
-                                        <Route path='/post' component={Post}> </Route>
-                                    </Router>
-                                               
-                                    <span className='initialPost'> {tema.post} </span>
-                                </div>
-                                {console.log(miVariable++)}
-                            </div>             
+                            </div>
+                        </div>
                     })
                 }
             </div>

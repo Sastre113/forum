@@ -1,69 +1,196 @@
-*{
-    padding: 0;
-    margin: 0;
-    box-sizing: border-box;
+* {
+  padding: 0;
+  margin: 0;
+  box-sizing: border-box;
 }
 
+$base-color: rgb(19, 136, 204);
 
 /* Estilo Barra de Navegación */
-.navForo {
-    background-color: grey;
+
+.nav-Menu {
+  //background-color: rgb(11, 178, 255);
+  background-color: $base-color;
+  list-style-type: none;
+  overflow: hidden;
+  position: sticky; // Esto no funciona, de momento.
+  top: 0;
+  width: 100%;
+  min-width: 150px;
+
+  .nav-Menu-Logo {
+    font-family: cursive;
+    padding-left: 30px;
+
+    .nav-container-logo {
+      position: relative;
+      text-align: center;
+      color: white;
+
+      .img-logo {
+        display: block;
+        position: relative;
+        height: 60px;
+        width: 60px;
+        background: #ff8f00;
+        border-radius: 20px;
+        transform: skew(-10deg);
+      }
+
+      .overlay-logo-text {
+        font-size: 24px;
+        color: red;
+        position: absolute;
+        top: 50%;
+        left: 50%;
+        transform: translate(-50%, -50%);
+        opacity: 0;
+        transition: 0.5s ease;
+        background-color: #ff8f00;
+        border-radius: 35%;
+      }
+
+      .overlay-logo-text:hover {
+        opacity: 1;
+      }
+    }
+  }
+  .nav-menu-btns {
+    margin-left: 100px;
+  }
+
+  ul {
     list-style-type: none;
-    overflow: hidden;
-    position: sticky;
-    top: 0;
-  }
-  
-  .navForo > li {
-    float: left;
-    font-size: 20px;
-  }
-  
-  .navForo > li a {
-    background-color: grey;
-    display: block;
-    color: black;
-    text-align: center;
-    text-decoration: none;
-    padding: 14px 16px;
 
+    li {
+      float: left;
+      font-size: 20px;
+
+      a {
+        cursor: pointer;
+        display: block;
+        color: black;
+        text-align: center;
+        text-decoration: none;
+        padding: 14px 16px;
+      }
+      a:hover {
+        background-color: white;
+      }
+    }
   }
-  
-  .navForo > li a:hover {
-    background-color: green;
-  }
-
-
-  /* Estilo Inicio */
-
-  .containerInicio{
-    max-height: 200px;
-  }
-
-  .thread{
-    display: grid;
-    margin: 10px;
-    grid-template-columns: 200px auto;
-    grid-template-rows: auto;
-    overflow: hidden;
-    height: 100px;
-    max-height: 100px;
-    background-color: rgb(51, 177, 235);
-    border-radius: 5px;
-  }
-
-  .authorThread {
-    background-color: black;
-    color: white;
-    margin: 5px;
-    text-align: center;
-    border-radius: 10px;
-    max-height: 90px;
 }
 
-.authorThread{
+/* Estilo App*/
+
+.main-container {
+  margin-top: -20px;
+  margin-bottom: -30px;
+}
+
+/* Estilo componente "Inicio" */
+
+.containerInicio {
+  max-height: 200px;
+  margin-top: 30px;
+}
+
+.initial-thread {
+  display: grid;
+  margin: 10px;
+  grid-template-columns: 200px auto;
+  grid-template-rows: auto;
+  overflow: hidden;
+  height: 100px;
+  max-height: 100px;
+  background-color: rgb(51, 177, 235);
+  border-radius: 5px;
+}
+
+.initial-author-Thread {
+  background-color: black;
+  color: white;
+  margin: 5px;
+  text-align: center;
+  border-radius: 10px;
+  max-height: 90px;
   padding: 10px;
 }
-.bodyThread  {
-  margin-left: 5px;
+
+.initial-body-Thread {
+  padding-left: 5px;
+
+  .initial-route-Thread {
+    cursor: pointer;
+  }
+  .initial-title-Thread {
+    font-size: 20px;
+    font-weight: bold;
+  }
+  .initial-Thread {
+    font-size: 12px;
+  }
+}
+
+/* Formulario Modal */
+
+.modal-new-thread {
+  position: absolute;
+  top: 40px;
+  left: 40px;
+  right: 40px;
+  bottom: 40px;
+  border: 1px solid #ccc;
+  background: #fff;
+  overflow: auto;
+  border-radius: 10px;
+  outline: none;
+  padding: 20px;
+  height: max-content;
+  width: 50%;
+  margin-left: auto;
+  margin-right: auto;
+
+  .btns-modal-form {
+    margin-top: 20px;
+
+    .btn-modal-send {
+      background-color: green;
+    }
+
+    .btn-modal-close {
+      background-color: red;
+      margin-left: 5px;
+    }
+  }
+}
+
+.btn-closeModal {
+  padding: 15px 25px;
+  font-size: 10px;
+  text-align: center;
+  cursor: pointer;
+  outline: none;
+  color: #fff;
+  background-color: #4caf50;
+  border: none;
+  border-radius: 15px;
+  box-shadow: 0 9px #999;
+
+  &:hover {
+    background-color: #3e8e41;
+  }
+  &:active {
+    background-color: #3e8e41;
+    box-shadow: 0 5px #666;
+    transform: translateY(4px);
+  }
+}
+
+/*  Estilo Componente Footer */
+
+
+
+.footer{
+  background-color: black;
 }

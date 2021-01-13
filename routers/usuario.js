@@ -1,7 +1,7 @@
 const express = require('express')
-const Usuario = require('../models/usuario')
 const auth = require('../middleware/auth')
 const router = new express.Router()
+const Usuario = require('../models/usuario')
 
 router.post('/usuarios', async (req, res) => {
     const usuario = new Usuario(req.body)
@@ -34,6 +34,7 @@ router.post('/usuarios/logout', auth, async (req, res) => {
 
         res.send()
     } catch (e) {
+        
         res.status(500).send()
     }
 })
@@ -52,9 +53,35 @@ router.get('/usuarios/me', auth, async (req, res) => {
     res.send(req.usuario)
 })
 
+router.get('/usuarios/all', auth,async (req, res) => {
+    try {
+        const usuarios = await Usuario.find({})
+        res.send(usuarios)
+    } catch (error) {
+        res.status(500).send()
+    }
+})
+
+router.get('/usuarios/:id', async (req, res) => {
+    const _id = req.params.id
+
+    try {
+        const respuesta = await Respuesta.findById(_id)
+
+        if (!respuesta) {
+            return res.status(404).send()
+        }
+
+        res.send(respuesta)
+    } catch (e) {
+        res.status(500).send()
+    }
+})
+
+
 router.patch('/usuarios/me', auth, async (req, res) => {
     const updates = Object.keys(req.body)
-    const allowedUpdates = ['tipo','nombre','apellido'/*,'fechaNacimiento'*/, 'email','tipoPrivacidad','password']
+    const allowedUpdates = ['nickname','nombre','apellido','fechaNacimiento', 'email','password','tipoPrivacidad','tipoCuenta']
     const isValidOperation = updates.every((update) => allowedUpdates.includes(update))
 
     if (!isValidOperation) {

@@ -16,75 +16,49 @@
         </div>
 
         <div class="mb-3">
-            <label for="exampleInputEmail1" class="form-label">Alias</label>
-            <input type="text" class="form-control" id="exampleInputEmail1" name="alias" />
+            <label for="alias" class="form-label">Alias</label>
+            <input type="text" class="form-control" id="alias" name="alias" />
         </div>
 
         <div class="mb-3">
-            <label for="exampleInputEmail1" class="form-label">Correo electrónico</label>
-            <input type="email" class="form-control" id="exampleInputEmail1" name="email" />
-            <div id="emailHelp" class="form-text">Nunca compartiremos tu correo electrónico con nadie más.</div>
+            <label for="fechaNaci" class="form-label" >Fecha de Nacimiento</label>
+            <input type="date" class="form-control" id="fechaNaci" name="fechaNaci" placeholder="DD/MM/AAAA"  />
+            
         </div>
 
         <div class="mb-3">
-            <label for="exampleInputPassword1" class="form-label">Contraseña</label>
-            <input type="password" class="form-control" id="exampleInputPassword1" name="password" />
+            <label for="email" class="form-label">Correo electrónico</label>
+            <input type="email" class="form-control" id="email" name="email" />
+            <div id="none" class="form-text">Nunca compartiremos tu correo electrónico con nadie más.</div>
         </div>
 
         <div class="mb-3">
-            <label for="exampleInputEmail1" class="form-label">¿Quien eres?</label><br/>
-            <select class="form-select form-select-sm" name="tipocuenta">
+            <label for="password" class="form-label">Contraseña</label>
+            <input type="password" class="form-control" id="password" name="password" />
+        </div>
+
+        <div class="mb-3">
+            <label for="tipoCuenta" class="form-label">¿Quien eres?</label><br/>
+            <select class="form-select form-select-sm" name="tipoCuenta">
                 <option selected>Selecciona...</option>
-                <option value="familia">Soy un familiar</option>
-                <option value="usuario">Soy un usuario</option>
+                <option value="Familiar">Familiar</option>
+                <option value="Usuario">Usuario</option>
             </select>
         </div>
 
         <div class="mb-3">
-            <div id="emailHelp" class="form-text">Opciones de privacidad</div>
+            <div id="privacidad" class="form-text">Opciones de privacidad</div>
             <select class="form-select form-select-sm" name="tipoPrivacidad">
                 <option selected>Selecciona...</option>
-                <option value="soloalias">Mostrar solo mi Alias</option>
-                <option value="solonombre">Mostrar solo mi Nombre</option>
-                <option value="nombrecompleto">Mostrar mi Nombre y Apellidos</option>
+                <option value="Alias">Anónimo</option>
+                <option value="Nombre">Mostrar nombre y apellido</option>
             </select>
         </div>
 
         <button class="btn btn-primary">Registrarse</button>
+        <a href="/" class="btn btn-primary" class='btn'>Volver</a>
         </form>
 
     </div>
 
-    <script src="https://unpkg.com/axios/dist/axios.min.js"></script>
-    <script>
-        const createForm = document.querySelector('#user-form-create')
-        createForm.addEventListener('submit', async(e) => {
-            e.preventDefault()
-
-            const usuario = 
-                    {
-                        "tipo": e.target.elements.tipocuenta.value,
-                        "nombre": e.target.elements.nombre.value,
-                        "apellido": e.target.elements.apellidos.value,
-                        "fechaNacimiento": e.target.elements.password.value,
-                        "email": e.target.elements.email.value,
-                        "password": e.target.elements.password.value,
-                        "tipoPrivacidad": e.target.elements.tipoPrivacidad.value
-                        // ? token
-                    }
-
-            try {
-
-              const resultado = await axios.post('/api/usuarios', usuario)
-
-              console.log(resultado)
-
-            } catch (error) {
-              console.log(error)
-            }
-
-            
-        })
-      </script>
-
-<%- include("./partials/footer.ejs") %>
+<%- include("./partials/footer-signup.ejs") %>
