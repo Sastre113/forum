@@ -1,16 +1,19 @@
 import React, { Component } from 'react';
-
+import Menu from './Menu';
+import Footer from './Footer';
 
 export default class Reply extends Component {
 
     state = {
-        posts: []
+        
     }
 
     render() {
         return (
-            <div>          
-                
+            <div>      
+                Hola
+                {console.log('Estoy escribiendo en la consola')}
+                <Footer />
             </div>
         )
     }
