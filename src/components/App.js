@@ -4,6 +4,7 @@ import axios from '../axiosConfig'
 // Components
 import Menu from './Menu';
 import Inicio from './Inicio';
+import Reply from './Reply';
 import Footer from './Footer';
 
 
@@ -19,7 +20,7 @@ export default class App extends Component {
   }
 
   componentDidMount() {
-    const currentUser = axios.get('http://localhost:3001/api/usuarios/me',);
+    const currentUser = axios.get('/usuarios/me',);
     Promise.all([currentUser]).then(values => {
       this.setState({ usuarioActual: values[0].data })
     })
