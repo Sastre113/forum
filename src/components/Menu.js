@@ -70,6 +70,7 @@ export default class Menu extends Component {
                         </li>
                         <div className='nav-menu-btns'>
                             {/* <li> <a>Home</a>  </li> */}
+                            <li><Link to='/forum'>Home</Link></li>
                             <li> <a onClick={this.controlModalThread}>Nuevo Tema </a>  </li>
                             <li><Link to='/logout'>Cerrar Sesión</Link></li>
                         </div>
@@ -91,7 +92,6 @@ export default class Menu extends Component {
                                 value={this.state.threadTitle}
                             />
                         </div>
-                        {/* FALTA COGER LA ENFERMENDA */}
                         <div className="new-thread-disease-area">
                             <label htmlFor="disease">Enfermedad</label>
                             <select className="form-control"

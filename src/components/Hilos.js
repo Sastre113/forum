@@ -1,9 +1,10 @@
 import React, { Component } from 'react';
+import { Link } from 'react-router-dom';
 import axios from '../axiosConfig';
 
 
 
-export default class Inicio extends Component {
+export default class Hilos extends Component {
 
     constructor(props) {
         super(props)
@@ -40,13 +41,19 @@ export default class Inicio extends Component {
                 auxPerfil = { nombre: `${usuario.nombre} ${usuario.apellido}` };
         }
 
+
         return auxPerfil;
     }
+
+    // crearRuta = (idThread) =>{
+    //     return `/Reply/${idThread}`
+    // }
+
 
     render() {
         return (
 
-            <div className='containerInicio'>
+            <div className='containerHilos'>
                 {
                     // Aqui es donde deberíamos
                     //  controlar que hilos ve el usuario
@@ -55,18 +62,23 @@ export default class Inicio extends Component {
                             <div className='initial-author-Thread'>
                                 {
                                     this.getPerfil(hilo.idAuthor).nombre
-                                } 
+                                }
                             </div>
-                            <div className='initial-body-Thread'>
-                                <div className='initial-route-Thread'>
-                                    <a className='initial-title-Thread' >
-                                        {hilo.titleThread}
-                                    </a><br />
-                                    <span className='initial-body-post'>
-                                        {hilo.bodyThread}
-                                    </span>
-                                </div>
+
+                            <div className='initial-body-Thread' >
+                                <Link to='/Reply'>
+                                    <div className='initial-route-Thread'>
+                                        <a className='initial-title-Thread' >
+                                            {hilo.titleThread}
+                                        </a><br />
+                                        <span className='initial-body-post'>
+                                            {hilo.bodyThread}
+                                        </span>
+                                    </div>
+                                </Link>
+
                             </div>
+
                         </div>
                     })
                 }

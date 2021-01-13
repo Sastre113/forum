@@ -58,7 +58,7 @@ app.use('/api', frasesRouter);
 app.use('/api', hiloRouter);
 
 
-app.get('/*', (req ,res) => {
+app.get('/forum', (req ,res) => {
   res.render('forum', {title: 'Forum'})
 })
 
