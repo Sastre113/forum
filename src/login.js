@@ -10,7 +10,7 @@ loginForm.addEventListener('submit', (e) => {
   })
 
   response.then((auth) => {
-    console.log(auth)
+    // console.log(auth)
     const AUTH_TOKEN = auth.data.token
     localStorage.setItem('auth-token', AUTH_TOKEN)
     getAuthToken()
@@ -18,11 +18,10 @@ loginForm.addEventListener('submit', (e) => {
   }).catch((error) =>{
     console.log(error)
   })
-
 })
 
 const getAuthToken = () => {
   const AUTH_TOKEN = localStorage.getItem('auth-token')
-  console.log('auth token from usuario-login.ejs', AUTH_TOKEN)
+  // console.log('auth token from usuario-login.ejs', AUTH_TOKEN)
   axios.defaults.headers.common['Authorization'] = AUTH_TOKEN
 }

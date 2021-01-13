@@ -83,6 +83,7 @@
 /* Estilo App*/
 .main-container {
   margin-top: -20px;
+  margin-bottom: -30px;
 }
 
 /* Estilo componente "Inicio" */
@@ -131,15 +132,33 @@
 }
 
 /* Formulario Modal */
-.modal-new-thread .new-thread-form .btns-modal-form {
+.modal-new-thread {
+  position: absolute;
+  top: 40px;
+  left: 40px;
+  right: 40px;
+  bottom: 40px;
+  border: 1px solid #ccc;
+  background: #fff;
+  overflow: auto;
+  border-radius: 10px;
+  outline: none;
+  padding: 20px;
+  height: max-content;
+  width: 50%;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+.modal-new-thread .btns-modal-form {
   margin-top: 20px;
 }
 
-.modal-new-thread .new-thread-form .btns-modal-form .btn-modal-send {
+.modal-new-thread .btns-modal-form .btn-modal-send {
   background-color: green;
 }
 
-.modal-new-thread .new-thread-form .btns-modal-form .btn-modal-close {
+.modal-new-thread .btns-modal-form .btn-modal-close {
   background-color: red;
   margin-left: 5px;
 }
@@ -167,7 +186,4 @@
   transform: translateY(4px);
 }
 
-/*  Footer ejs */
-.container.footer {
-  background-color: black;
-}
+/*  Estilo Componente Footer */

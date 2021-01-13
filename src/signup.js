@@ -21,13 +21,9 @@ createForm.addEventListener('submit', async (e) => {
         "tipoPrivacidad": e.target.elements.tipoPrivacidad.value,
     }
 
-    console.log(usuario)
     try {
-
         const resultado = await axios.post('/usuarios', usuario)
-
-        console.log(resultado)
-
+        // console.log(resultado)
     } catch (error) {
         console.log(error)
     }

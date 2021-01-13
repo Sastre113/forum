@@ -5,7 +5,6 @@ import axios from '../axiosConfig'
 import Menu from './Menu';
 import Inicio from './Inicio';
 import Footer from './Footer';
-import Post from './Post';
 
 
 
@@ -29,11 +28,12 @@ export default class App extends Component {
   render() {
     return (
       <div>
-        <Menu usuarioActual={this.state.usuarioActual}/>
-        <div className='main-container'>
-          <Inicio />
+        <Menu usuarioActual={this.state.usuarioActual} />
+        <Inicio />
+        <div>
+          <Footer />
         </div>
-        <Footer />
+        
       </div>
     )
   }

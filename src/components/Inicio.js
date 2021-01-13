@@ -1,7 +1,6 @@
 import React, { Component } from 'react';
 import axios from '../axiosConfig';
 
-import Post from './Post';
 
 
 export default class Inicio extends Component {
@@ -9,14 +8,14 @@ export default class Inicio extends Component {
     constructor(props) {
         super(props)
         this.state = {
-            usuarios: [{}],
-            hilos: [{}]
+            usuarios: [],
+            hilos: []
         }
     }
 
     componentDidMount() {
-        const threads = axios.get('http://localhost:3001/api/hilos',);
-        const users = axios.get('http://localhost:3001/api/usuarios/all',);
+        const threads = axios.get('/hilos',);
+        const users = axios.get('/usuarios/all',);
 
         Promise.all([threads, users]).then(values => {
             this.setState({ hilos: values[0].data, usuarios: values[1].data })
@@ -52,11 +51,11 @@ export default class Inicio extends Component {
                     // Aqui es donde deberíamos
                     //  controlar que hilos ve el usuario
                     this.state.hilos.map(hilo => {
-                        return <div className='initial-thread' key={hilo.idThread}>
+                        return <div className='initial-thread' key={hilo._id}>
                             <div className='initial-author-Thread'>
                                 {
                                     this.getPerfil(hilo.idAuthor).nombre
-                                }
+                                } 
                             </div>
                             <div className='initial-body-Thread'>
                                 <div className='initial-route-Thread'>

@@ -1,10 +1,6 @@
 const mongoose = require('mongoose');
 
 const hiloSchema = new mongoose.Schema({
-    idThread: {
-        type: String,
-        required: true
-    },
     idAuthor: {
         type: String,
         required: true
@@ -22,7 +18,7 @@ const hiloSchema = new mongoose.Schema({
         required: true
     }
 
-}, {timestamps: true})
+}, { timestamps: true })
 
 const Hilo = mongoose.model('Hilo', hiloSchema);
 

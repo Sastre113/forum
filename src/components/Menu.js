@@ -1,14 +1,18 @@
 import React, { Component } from 'react';
 import { Link } from 'react-router-dom';
 import Modal from 'react-modal';
+import axios from '../axiosConfig'
+import '../polyfill.min.js';
 
 
 export default class Menu extends Component {
 
     state = {
         modalThreadState: false,
-        newThread: "",
-        threadMsg: ""
+        threadTitle: "",
+        threadMsg: "",
+        threadDisease: ""
+
     }
 
     controlModalThread = () => {
@@ -17,18 +21,33 @@ export default class Menu extends Component {
         })
     }
 
-    // Funcionamiento del metodo
-    //     1. Pedir el usuario que esta conectado ahora mismo
-    //     2. 
+    onSubmit = async (e) => {
+        const newThread = {
+            idAuthor: this.props.usuarioActual._id,
+            disease: this.state.threadDisease,
+            titleThread: this.state.threadTitle,
+            bodyThread: this.state.threadMsg
+            }
+
+        let elHilo = await axios.post('/hilos', newThread);
+
+        //const newReply = {
+        //     idThread:,
+        //     idAuthor: this.props.usuarioActual._id,
+        //     titleThread: this.state.threadTitle,
+        //     bodyThread: this.state.threadMsg
+        // }
 
 
-    onSubmit = () => {
-        
+        // const res = await axios.post('/respuestas', newReply);
+        //await axios.post('/respuestas', newReply);
+        e.preventDefault();
     }
 
     onChange = e => {
         const tipo = e.target.name;
         const valor = e.target.value;
+
         this.setState({
             [tipo]: valor
         })
@@ -48,48 +67,65 @@ export default class Menu extends Component {
                                 <img className='img-logo' src="/img/logoWundt256x256.ico" alt="Girl in a jacket" />
                                 <div className='overlay-logo-text'>Wundt</div>
                             </div>
-
                         </li>
                         <div className='nav-menu-btns'>
-                            <li> <a>Home</a>  </li>
+                            {/* <li> <a>Home</a>  </li> */}
                             <li> <a onClick={this.controlModalThread}>Nuevo Tema </a>  </li>
                             <li><Link to='/logout'>Cerrar Sesión</Link></li>
                         </div>
                     </ul>
                 </div>
-                <div className='modal-new-thread'>
-                    <Modal
-                        isOpen={this.state.modalThreadState}
-                        ariaHideApp={false}
-                        portalClassName='modal-new-thread'
-                    >
-                        <form className="new-thread-form" onSubmit={this.onSubmit}>
-                            <h2>Nuevo Tema</h2>
-                            <p>Rellene todos los campos.</p>
-                            <div className="new-thread-title-area">
-                                <label htmlFor="titulo" className="form-label">Titulo</label>
-                                <input className="form-control input-title-thread" type="text" name="title-thread"
-                                    onChange={this.onChange} value={this.state.newTitle}
+                <Modal
+                    isOpen={this.state.modalThreadState}
+                    ariaHideApp={false}
+                    className='modal-new-thread'
+                >
+                    <form className="new-thread-form" onSubmit={this.onSubmit}>
+                        <h2>Nuevo Tema</h2>
+                        <p>Rellene todos los campos.</p>
+                        <div className="new-thread-title-area">
+                            <label htmlFor="titulo" className="form-label">Titulo</label>
+                            <input className="form-control input-title-thread" type="text"
+                                name="threadTitle"
+                                onChange={this.onChange}
+                                value={this.state.threadTitle}
+                            />
+                        </div>
+                        {/* FALTA COGER LA ENFERMENDA */}
+                        <div className="new-thread-disease-area">
+                            <label htmlFor="disease">Enfermedad</label>
+                            <select className="form-control"
+                                name='threadDisease'
+                                onChange={this.onChange}
+                                value={this.state.disease}>
+                                {/* feat: Hacer una BD con las enfermedades
+                                    y descargarlas aqui */}
+                                <option></option>
+                                <option value='Enfermedad 1'>Enfermedad 1</option>
+                                <option value='Enfermedad 2'>Enfermedad 2</option>
+                                <option value='Enfermedad 3'>Enfermedad 3</option>
+                                <option value='Enfermedad 4'>Enfermedad 4</option>
+                                <option value='Enfermedad 5'>Enfermedad 5</option>
+                            </select>
+                        </div>
+                        <div className="new-thread-msg-area">
+                            <label htmlFor="body-first-post">Mensaje</label>
+                            <textarea className="form-control textarea-body-thread" rows="3"
+                                name="threadMsg"
+                                onChange={this.onChange}
+                                value={this.state.threadMsg}
 
-                                />
-                            </div>
-                            <div className="new-thread-msg-area">
-                                <label htmlFor="body-first-post">Mensaje</label>
-                                <textarea className="form-control textarea-body-thread" rows="3" name="body-thread"
-                                    onChange={this.onChange} value={this.state.newBody}
+                            />
+                        </div>
 
-                                />
-                            </div>
+                        <div className='btns-modal-form'>
+                            <button className="btn btn-primary btn-modal-send" type="submit" >Enviar</button>
+                            <button className="btn btn-primary btn-modal-close" type="button" onClick={this.controlModalThread}>Cerrar</button>
+                        </div>
 
-                            <div className='btns-modal-form'>
-                                <button className="btn btn-primary btn-modal-send" type="submit" >Enviar</button>
-                                <button className="btn btn-primary btn-modal-close" type="button" onClick={this.controlModalThread}>Cerrar</button>
-                            </div>
+                    </form>
 
-                        </form>
-
-                    </Modal>
-                </div>
+                </Modal>
 
             </div>
 

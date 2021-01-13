@@ -3,9 +3,9 @@ const express = require('express')
 require('dotenv').config()
 require('../db/mongoose')
 
-const usuarioRouter = require('../routers/usuario')
-const frasesSalut = require('../models/frasesSalut')
-const frasesRouter = require('../routers/frasesSalut')
+const frasesSalut = require('../models/frasesSalut');
+const usuarioRouter = require('../routers/usuario');
+const frasesRouter = require('../routers/frasesSalut');
 const hiloRouter = require('../routers/hilo');
 
 const auth = require('../middleware/auth')
@@ -52,15 +52,15 @@ app.get('/registro', async (req, res) => {
 });
 
 
-app.get('/forum', (req ,res) => {
-    res.render('forum', {title: 'Forum'})
-})
-
-
 app.use(express.json());
 app.use('/api', usuarioRouter);
 app.use('/api', frasesRouter);
 app.use('/api', hiloRouter);
+
+
+app.get('/*', (req ,res) => {
+  res.render('forum', {title: 'Forum'})
+})
 
 // 404 page
 app.use((req, res) => {

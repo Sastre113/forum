@@ -4,11 +4,13 @@
   box-sizing: border-box;
 }
 
+$base-color: rgb(19, 136, 204);
+
 /* Estilo Barra de Navegación */
 
 .nav-Menu {
   //background-color: rgb(11, 178, 255);
-  background-color: rgb(19, 136, 204);
+  background-color: $base-color;
   list-style-type: none;
   overflow: hidden;
   position: sticky; // Esto no funciona, de momento.
@@ -83,6 +85,7 @@
 
 .main-container {
   margin-top: -20px;
+  margin-bottom: -30px;
 }
 
 /* Estilo componente "Inicio" */
@@ -132,18 +135,32 @@
 /* Formulario Modal */
 
 .modal-new-thread {
-  .new-thread-form {
-    .btns-modal-form {
-      margin-top: 20px;
+  position: absolute;
+  top: 40px;
+  left: 40px;
+  right: 40px;
+  bottom: 40px;
+  border: 1px solid #ccc;
+  background: #fff;
+  overflow: auto;
+  border-radius: 10px;
+  outline: none;
+  padding: 20px;
+  height: max-content;
+  width: 50%;
+  margin-left: auto;
+  margin-right: auto;
 
-      .btn-modal-send {
-        background-color: green;
-      }
+  .btns-modal-form {
+    margin-top: 20px;
 
-      .btn-modal-close {
-        background-color: red;
-        margin-left: 5px;
-      }
+    .btn-modal-send {
+      background-color: green;
+    }
+
+    .btn-modal-close {
+      background-color: red;
+      margin-left: 5px;
     }
   }
 }
@@ -170,8 +187,5 @@
   }
 }
 
-/*  Footer ejs */
+/*  Estilo Componente Footer */
 
-.container.footer {
-  background-color: black;
-}
