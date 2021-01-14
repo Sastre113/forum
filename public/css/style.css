@@ -6,6 +6,16 @@
 }
 
 /* Estilo Barra de Navegación */
+.img-logo {
+  display: block;
+  position: relative;
+  height: 60px;
+  width: 60px;
+  background: #ff8f00;
+  border-radius: 20px;
+  transform: skew(-10deg);
+}
+
 .nav-Menu {
   background-color: #1388cc;
   list-style-type: none;
@@ -25,16 +35,6 @@
   position: relative;
   text-align: center;
   color: white;
-}
-
-.nav-Menu .nav-Menu-Logo .nav-container-logo .img-logo {
-  display: block;
-  position: relative;
-  height: 60px;
-  width: 60px;
-  background: #ff8f00;
-  border-radius: 20px;
-  transform: skew(-10deg);
 }
 
 .nav-Menu .nav-Menu-Logo .nav-container-logo .overlay-logo-text {

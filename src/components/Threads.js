@@ -45,31 +45,28 @@ export default class Hilos extends Component {
     render() {
         return (
 
-            <div className='containerHilos'>
+            <div className='containerHilos' style={{marginRight: '50px',marginLeft: '50px'}}>
                 {
                     this.props.hilos.map(hilo => {
-                        return <div className='initial-thread' key={hilo._id}>
-                            <div className='initial-author-Thread'>
-                                {
-                                    this.getPerfil(hilo.idAuthor).nombre
-                                }
-                            </div>
-
-                            <div className='initial-body-Thread' >
-                                <Link to={`/forum/${hilo._id}`}>
-                                    <div className='initial-route-Thread'>
-                                        <p className='initial-title-Thread' >
-                                            {hilo.titleThread}
-                                        </p><br />
-                                        <span className='initial-body-post'>
-                                            {hilo.bodyThread}
-                                        </span>
-                                    </div>
-                                </Link>
-
-                            </div>
-
+                        return <div className="card" key={hilo._id} style={{marginBottom: '10px'}}>
+                        <div className="card-header">
+                          {hilo.titleThread}
                         </div>
+                        <div className="card-body">
+                          <p>
+                              {hilo.bodyThread}
+                          </p>
+                          <p>
+                              Publicado por {this.getPerfil(hilo.idAuthor).nombre}.
+                          </p>
+                        </div>
+                        <div className="card-footer text-muted">
+                          <Link to={`/forum/${hilo._id}`}>
+                              Acceder al tema de discusión.
+                          </Link>
+                        </div>
+                      </div>
+                      
                     })
                 }
             </div>

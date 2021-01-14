@@ -61,24 +61,29 @@ export default class Menu extends Component {
     render() {
         return (
             <div>
-                <div className='nav-Menu'>
-                    <ul>
-                        <li className='nav-Menu-Logo'>
-                            <div className='nav-container-logo'>
-                                <img className='img-logo' src="/img/logoWundt256x256.ico" alt="logoWundt" />
-                                <div className='overlay-logo-text'>Wundt</div>
-                            </div>
-                        </li>
-                        <div className='nav-menu-btns'>
-                            {/* <li> <a>Home</a>  </li> */}
-                            <li><Link to='/forum'>Home</Link></li>
-                            <li> <a onClick={this.controlModalThread}>Nuevo Tema </a>  </li>
-                            <li><Link to='/logout'>Cerrar Sesión</Link></li>
-                        </div>
-                    </ul>
-                </div>
-                
-                
+                <nav className="navbar navbar-expand-lg navbar-dark bg-primary">
+                    <a className="navbar-brand">
+                            <img className='img-logo' src="/img/logoWundt256x256.ico" alt="logoWundt"  />
+                    </a>
+                    <button className="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+                        <span className="navbar-toggler-icon"></span>
+                    </button>
+                    <div className="collapse navbar-collapse" id="navbarNav">
+                        <ul className="navbar-nav">
+                            <li className="nav-item active">
+                                <Link to='/forum' className="nav-link">Home</Link>
+                            </li>
+                            <li className="nav-item active">
+                                <a className="nav-link" onClick={this.controlModalThread}>Nuevo tema</a>
+                            </li>
+                            <li className="nav-item active" >
+                                <Link to='/logout' className="nav-link"  >Cerrar Sesión</Link>
+                            </li>
+                        </ul>
+                    </div>
+                </nav>
+
+
                 <Modal
                     isOpen={this.state.modalThreadState}
                     ariaHideApp={false}

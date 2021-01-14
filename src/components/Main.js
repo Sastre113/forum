@@ -25,17 +25,11 @@ export default class Main extends Component {
         this.state = {
             usuarioActual: {},
             auth: localStorage.getItem('auth-token'),
-            idThreadSelect: '',
             usuarios: [],
             hilos: []
         }
     }
 
-    setIdThreadSelect = (idThread) => {
-        this.setState({
-            idThreadSelect: idThread
-        })
-    }
 
     recargarHilos = () => {
         const threads = axios.get('/hilos',);
@@ -62,15 +56,23 @@ export default class Main extends Component {
                 <div>
                     <Router>
                         <div>
-                            <Nav 
-                                recargarHilos={this.recargarHilos} 
-                                usuarioActual={this.state.usuarioActual} 
+                            <Nav
+                                recargarHilos={this.recargarHilos}
+                                usuarioActual={this.state.usuarioActual}
                             />
                             <Switch>
-                                <Route path='/forum/:id' component={Replys} />
-                                <Route 
+                                <Route
+                                    path='/forum/:id'
+                                    render={(props) =>
+                                        <Replys
+                                            usuarioActual={this.state.usuarioActual._id}
+                                            {...props}
+                                        />
+                                    }
+                                />
+                                <Route
                                     path='/forum'
-                                    render={ () =>
+                                    render={() =>
                                         <Threads
                                             usuarios={this.state.usuarios}
                                             hilos={this.state.hilos}

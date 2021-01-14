@@ -22,11 +22,11 @@ router.get('/respuestas', async (req, res) => {
     }
 })
 
-router.get('/respuestas/:id', async (req, res) => {
-    const _id = req.params.id
+router.get('/respuestas/:idThread', async (req, res) => {
+    const idHilo = req.params.idThread
 
     try {
-        const respuesta = await Respuesta.findById(_id)
+        const respuesta = await Respuesta.find({idThread:`${idHilo}`})
 
         if (!respuesta) {
             return res.status(404).send()

@@ -8,6 +8,17 @@ $base-color: rgb(19, 136, 204);
 
 /* Estilo Barra de Navegación */
 
+.img-logo {
+  display: block;
+  position: relative;
+  height: 60px;
+  width: 60px;
+  background: #ff8f00;
+  border-radius: 20px;
+  transform: skew(-10deg);
+}
+
+
 .nav-Menu {
   //background-color: rgb(11, 178, 255);
   background-color: $base-color;
@@ -27,16 +38,7 @@ $base-color: rgb(19, 136, 204);
       text-align: center;
       color: white;
 
-      .img-logo {
-        display: block;
-        position: relative;
-        height: 60px;
-        width: 60px;
-        background: #ff8f00;
-        border-radius: 20px;
-        transform: skew(-10deg);
-      }
-
+      
       .overlay-logo-text {
         font-size: 24px;
         color: red;
