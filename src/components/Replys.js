@@ -20,12 +20,7 @@ export default class Reply extends Component {
             modalThreadState: false,
             idThread: this.props.match.params.id,
             usuarioActual: this.props.usuarioActual,
-            respuestas: [{
-                idThread: '0',
-                idAuthor: '0',
-                titleReply: 'No existen respuestas en este hilo',
-                bodyReply: ''
-            }],
+            respuestas: [],
             usuarios: []
         }
     }
@@ -57,7 +52,6 @@ export default class Reply extends Component {
         const tipo = e.target.name;
         const valor = e.target.value;
 
-        console.log(`Esto es el tipo ${tipo} y esto es el valor ${valor} `)
         this.setState({
             [tipo]: valor
         })
@@ -89,46 +83,54 @@ export default class Reply extends Component {
                 usuarios: values[1].data
             })
         })
-
-
-        if (this.state.respuestas.lenght == 0){
-            console.log('Estoy aqui')
-            this.setState({
-                respuestas: [{
-                    idThread: '0',
-                    idAuthor: '0',
-                    titleReply: 'No existen respuestas en este hilo',
-                    bodyReply: ''
-                }]
-            })
-        }
-            
     }
 
     render() {
         return (
             <div>
-                <div className='containerHilos' style={{ marginRight: '50px', marginLeft: '50px' }}>
-                    {
-                        this.state.respuestas.map(respuesta => {
-                            return <div className="card" key={respuesta._id} style={{ marginBottom: '10px' }}>
-                                <div className="card-header">
-                                    {respuesta.titleReply}
-                                </div>
-                                <div className="card-body">
-                                    <p>
-                                        {respuesta.bodyReply}
-                                    </p>
-                                    <p>
-                                        Publicado por {this.getPerfil(respuesta.idAuthor).nombre}
-                          </p>
-                                </div>
-                                <div className="card-footer text-muted">
-                                    <button onClick={this.controlModalThread} >Nueva respuesta </button>
-                                </div>
-                            </div>
+                <div style={{textAlign:'center'}}>
+                    <a href="#" className="btn btn-primary btn-lg active mt-5 mb-5"
+                        role="button"
+                        onClick={this.controlModalThread}
+                        aria-pressed="true"
+                    >
 
-                        })
+                        Nueva respuesta
+                                    </a>
+                </div>
+
+                <div className='container container-Reply'>
+                    {
+                        this.state.respuestas.length > 0 ? (
+                            this.state.respuestas.map(respuesta => {
+                                return <div className="row" key={respuesta._id} style={{ marginBottom: '10px' }}>
+                                    <div className='col col-lg-12'>
+                                        <div className="titleReply">
+                                            {respuesta.titleReply}
+                                            <p className='whoReply'>
+                                                Publicado por {this.getPerfil(respuesta.idAuthor).nombre}
+                                            </p>
+                                        </div>
+                                        <div className="bodyReply">
+                                            <p className='p-BodyReply'>
+                                                {respuesta.bodyReply}
+                                            </p>
+                                        </div>
+                                    </div>
+                                </div>
+
+
+                            })
+                        )
+                            : (
+                                <div className='justify-content-md-center'>
+                                    <div className='col-md-2 container-noMsg'>
+                                        <div className="alert alert-primary" role="alert">
+                                            No hay mensajes.
+                                    </div>
+                                    </div>
+                                </div>
+                            )
                     }
                 </div>
 
@@ -138,7 +140,7 @@ export default class Reply extends Component {
                     className='modal-new-thread'
                 >
                     <form className="new-thread-form" onSubmit={this.onSubmit}>
-                        <h2>Nuevo Respuesta</h2>
+                        <h2>Nueva Respuesta</h2>
                         <p>Rellene todos los campos.</p>
                         <div className="new-thread-title-area">
                             <label htmlFor="titulo" className="form-label">Titulo</label>

@@ -25,7 +25,6 @@ app.listen(port, () => {
 // register view engine
 app.set('view engine', 'ejs');
 
-
 // middleware & static files
 app.use(express.static('public'));
 app.use('/static', express.static(__dirname + '/src'));

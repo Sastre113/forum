@@ -1,41 +1,62 @@
 <%- include("./partials/header.ejs") %>
 
-<header>
-  <div class="container">
-    <h1>Wundt</h1>
-  </div>
-</header>
 
-<main>
-  <section>
-    <div class="container">
-      <form id="usuario-form-login" action="/forum" type="txt/html">
-        
-          <p><quote>"<b><%= fraseSalut.frase %></b>"<br> ~ <u><%= fraseSalut.autor %></u></quote></p>
 
-          <h2>Conexión</h2>
-          <p>Debe realizar previamente una solicitud de registro, puede solicitar una invitación en uno de los siguientes <NavLink to='/centros-miembros'>centros de salud mental</NavLink>.</p>
-          
-          <div class="mb-3">
-              <label for="email" class="form-label">Correo electrónico</label>
-              <input name="email" type="email" class="form-control" id="email" />
-              
-          </div>
-          <div class="mb-3">
-              <label for="password" class="form-label">Contraseña</label>
-              <input name="password" type="password" class="form-control" id="password" />
-          </div>
-          <div class="mb-3 form-check">
-              <input type="checkbox" class="form-check-input" id="recordar" />
-              <label name="recordar" class="form-check-label" for="recordar">Recordar contraseña</label>
-          </div>
-          <button id="login" class="btn btn-primary">Conectar</button>
-          <a href="/registro" class="btn btn-primary" class='btn'>Registrarse</a>
-          </form>
+
+  <div class='container-login'>
+    <div class='container-login-flex'>
+      <div class='container-name-project'>
+        <div class='name-project'>
+          <img class='title-logo-project' src="../img/logo/logoWundt.png" alt="Paisaje">
+          Wundt
+        </div>
       </div>
-  </section>
-</main>
+      <div class="container-login-frases">
+        <div class='container-frases'>
+          <div class='login-frases'>
+            <div>
+              <quote>"<b>
+                  <%= fraseSalut.frase %>
+                </b>"<br> ~ <u>
+                  <%= fraseSalut.autor %>
+                </u></quote>
+            </div>
+          </div>
+        </div>
+  
+        <div class='container-form-flex'>
+          <div class='form-flex'>
+            <form id="usuario-form-login" action="/forum" type="txt/html">
+  
+              <h2 class='iniciarSesionText'>Iniciar sesión</h2>
+              <p>Debe realizar previamente una solicitud de registro para acceder a nuestra plataforma.</p>
+  
+              <div class="mb-3">
+                <label for="email" class="form-label">Correo electrónico</label>
+                <input name="email" type="email" class="form-control" id="email" />
+  
+              </div>
+              <div class="mb-3">
+                <label for="password" class="form-label">Contraseña</label>
+                <input name="password" type="password" class="form-control" id="password" />
+              </div>
+              <div class="mb-3 form-check">
+                <input type="checkbox" class="form-check-input" id="recordar" />
+                <label name="recordar" class="form-check-label" for="recordar">Recordar contraseña</label>
+              </div>
+              <button id="login" class="btn btn-primary">Conectar</button>
+              <a href="/registro" class="btn btn-primary" class='btn'>Registrarse</a>
+            </form>
+          </div>
+        </div>
+      </div>
+      
+    </div>
+
+  </div>
 
 
 
-<%- include("./partials/footer-login.ejs") %>
+
+
+  <%- include("./partials/footer-login.ejs") %>

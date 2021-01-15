@@ -50,7 +50,7 @@ export default class Hilos extends Component {
                     this.props.hilos.map(hilo => {
                         return <div className="card" key={hilo._id} style={{marginBottom: '10px'}}>
                         <div className="card-header">
-                          {hilo.titleThread}
+                          <h3>{hilo.titleThread}</h3>
                         </div>
                         <div className="card-body">
                           <p>

@@ -73,7 +73,7 @@ export default class Menu extends Component {
                             <li className="nav-item active">
                                 <Link to='/forum' className="nav-link">Home</Link>
                             </li>
-                            <li className="nav-item active">
+                            <li className="nav-item active" style={{cursor:'pointer'}}>
                                 <a className="nav-link" onClick={this.controlModalThread}>Nuevo tema</a>
                             </li>
                             <li className="nav-item active" >

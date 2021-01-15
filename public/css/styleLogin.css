@@ -1,0 +1,97 @@
+html,body{
+    height: 100%;
+}
+
+
+.container-login {
+    align-items: center;
+    display: flex;
+    height: 100%;
+}
+
+.container-login-frases{
+    display: flex;
+    height: 90%;
+    flex: 1;
+    justify-content: space-evenly;
+}
+
+.container-name-project{
+    
+    backdrop-filter: blur(10px);
+    
+}
+
+.name-project{
+    color:red;
+    font-size: 75px;
+    text-align: center;
+    font-family: 'Poppins';
+}
+
+.iniciarSesionText{
+    text-align: center;
+}
+
+.title-logo-project{
+    height: 90px;
+    width: 90px;
+    background-color: #ff8f00;
+    border-radius: 20px;
+    transform: skew(-10deg);
+}
+
+.container-login-flex{
+    flex-direction: column;
+    display: flex;
+    height: 90%;
+    flex: 1;
+    justify-content: space-evenly;
+    background-image: url("../img/background-img/21025-paisajes-relajantes.jpg");
+    background-position-y: center;
+    background-size: cover;
+    background-repeat: no-repeat;
+}
+
+.container-frases{
+    align-items: center;
+    display: flex;
+    flex: 1;
+    justify-content: center;
+    
+}
+
+.login-frases{
+    background: #ffffff5c;
+    padding: 10px 20px;
+    backdrop-filter: blur(10px);
+    border-radius: 20px;
+}
+
+.container-form-flex{
+    display: flex;
+    align-items: center;
+    flex: 1;
+    justify-content: center;
+}
+
+.form-flex{
+    background: white;
+    padding: 20px;
+    border-radius: 20px;
+    width: 70%;
+}
+
+@media (max-width: 1080px) {
+    .facet_sidebar {
+      display: none;
+    }
+
+    .container-login-frases{
+        flex-direction: column;
+        justify-content: inherit;
+    }
+    .container-frases{
+        order: 1;
+    }   
+  }
