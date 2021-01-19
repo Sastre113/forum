@@ -23,6 +23,7 @@ createForm.addEventListener('submit', async (e) => {
     try {
         const resultado = await axios.post('/usuarios', usuario)
         console.log(resultado)
+        window.location.href = '/';
     } catch (error) {
         console.log(error)
     }
