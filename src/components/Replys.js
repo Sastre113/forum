@@ -20,6 +20,7 @@ export default class Reply extends Component {
             modalThreadState: false,
             idThread: this.props.match.params.id,
             usuarioActual: this.props.usuarioActual,
+            thread: [],
             respuestas: [],
             usuarios: []
         }
@@ -76,11 +77,13 @@ export default class Reply extends Component {
     recargarReply = () => {
         const replys = axios.get(`/respuestas/${this.state.idThread}`,);
         const users = axios.get('/usuarios/all',);
+        const originalThread = axios.get(`/hilos/${this.state.idThread}`);
 
-        Promise.all([replys, users]).then(values => {
+        Promise.all([replys, users, originalThread]).then(values => {
             this.setState({
                 respuestas: values[0].data,
-                usuarios: values[1].data
+                usuarios: values[1].data,
+                thread: values[2].data
             })
         })
     }
@@ -88,50 +91,67 @@ export default class Reply extends Component {
     render() {
         return (
             <div>
-                <div style={{textAlign:'center'}}>
-                    <a href="#" className="btn btn-primary btn-lg active mt-5 mb-5"
-                        role="button"
-                        onClick={this.controlModalThread}
-                        aria-pressed="true"
-                    >
+                <div>
+                    <div className='container-main-msg-reply'>
+                        <div className='container-main-msg' key={this.state.thread._id}>
+                            <div className='main-msg-title'>
+                                {this.state.thread.titleThread}
+                                <p className='main-msg-author'>
+                                    Publicado por {this.getPerfil(this.state.thread.idAuthor).nombre}
+                                </p>
+                            </div>
+                            <div className="main-msg-body">
+                                <p className='p-bodyThread'>
+                                    {this.state.thread.bodyThread}
+                                </p>
+                            </div>
+                            <div className='main-msg-footer'>
+                                <a href="#" className="btn btn-primary btn-lg active mt-5 mb-5"
+                                    role="button"
+                                    onClick={this.controlModalThread}
+                                    aria-pressed="true"
+                                >
 
-                        Nueva respuesta
+                                    Nueva respuesta
                                     </a>
-                </div>
-
-                <div className='container container-Reply'>
-                    {
-                        this.state.respuestas.length > 0 ? (
-                            this.state.respuestas.map(respuesta => {
-                                return <div className="row" key={respuesta._id} style={{ marginBottom: '10px' }}>
-                                    <div className='col col-lg-12'>
-                                        <div className="titleReply">
-                                            {respuesta.titleReply}
-                                            <p className='whoReply'>
-                                                Publicado por {this.getPerfil(respuesta.idAuthor).nombre}
-                                            </p>
+                            </div>
+                        </div>
+                    </div>
+                    <div className='container container-Reply'>
+                        {
+                            this.state.respuestas.length > 0 ? (
+                                this.state.respuestas.map(respuesta => {
+                                    return <div className="row" key={respuesta._id} style={{ marginBottom: '10px' }}>
+                                        <div className='col col-lg-12'>
+                                            <div className="titleReply">
+                                                {respuesta.titleReply}
+                                                <p className='whoReply'>
+                                                    Publicado por {this.getPerfil(respuesta.idAuthor).nombre}
+                                                </p>
+                                            </div>
+                                            <div className="bodyReply">
+                                                <p className='p-BodyReply'>
+                                                    {respuesta.bodyReply}
+                                                </p>
+                                            </div>
                                         </div>
-                                        <div className="bodyReply">
-                                            <p className='p-BodyReply'>
-                                                {respuesta.bodyReply}
-                                            </p>
-                                        </div>
                                     </div>
-                                </div>
 
 
-                            })
-                        )
-                            : (
-                                <div className='justify-content-md-center'>
-                                    <div className='col-md-2 container-noMsg'>
-                                        <div className="alert alert-primary" role="alert">
-                                            No hay mensajes.
-                                    </div>
-                                    </div>
-                                </div>
+                                })
                             )
-                    }
+                                : (
+                                    <div className='justify-content-md-center'>
+                                        <div className='col-md-2 container-noMsg'>
+                                            <div className="alert alert-primary" role="alert">
+                                                No hay mensajes.
+                                    </div>
+                                        </div>
+                                    </div>
+                                )
+                        }
+                    </div>
+
                 </div>
 
                 <Modal

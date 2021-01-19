@@ -50,6 +50,8 @@ export default class Main extends Component {
             this.setState({ usuarioActual: values[0].data })
         })
     }
+
+    
     render() {
         if (this.state.auth) {
             return (
@@ -57,6 +59,7 @@ export default class Main extends Component {
                     <Router>
                         <div>
                             <Nav
+                                onChange={this.onChange}
                                 recargarHilos={this.recargarHilos}
                                 usuarioActual={this.state.usuarioActual}
                             />
@@ -65,6 +68,7 @@ export default class Main extends Component {
                                     path='/forum/:id'
                                     render={(props) =>
                                         <Replys
+                                            onChange={this.onChange}
                                             usuarioActual={this.state.usuarioActual._id}
                                             {...props}
                                         />
